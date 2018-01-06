@@ -1,5 +1,7 @@
 ﻿# Summary
 
+* [前言](README.md)
+
 ### Python知识
 
 * [搭建shadowsocks](./python/buildShadowsocks.md)
