@@ -6,7 +6,6 @@
 * [测试](ce-shi.md)
 <<<<<<< HEAD
 * [第二次提交](SECOND.md)
-* [第三次提交](THIRD.md)
 * [他说](ta-shuo.md)
 =======
 * [你说呢](ni-shuo-ni.md)
