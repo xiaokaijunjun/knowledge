@@ -1,4 +1,4 @@
-﻿# 搭建shadowsocks #
+# 搭建shadowsocks
 
 ###环境：Centos7.4 
 自己动手搭建shadowsocks翻墙服务
