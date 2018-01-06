@@ -47,5 +47,5 @@ ssserver -c /etc/shadowsocks.json -d stop
 在/etc/rc.local中加入
 sudo ssserver -c /etc/shadowsocks.json -d start
 
-window 使用shandowsocks
+window 使用shandowsocks<br/>
 ![](https://i.imgur.com/QkG54b8.png)
