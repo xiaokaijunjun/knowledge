@@ -3,14 +3,12 @@
 * [前言](README.md)
 
 ### Python知识
-
-* [搭建shadowsocks](./python/buildShadowsocks.md)
+* [ladp3查询信息](./python/ladp3查询信息.md)
 
 ### Linux知识
-
+* [源码安装nginx](./linux/源码安装nginx.md)
 
 ###杂谈
-
 * [搭建shadowsocks](./other/搭建shadowsocks.md)
 
 

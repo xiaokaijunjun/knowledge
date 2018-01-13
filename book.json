@@ -1,0 +1,41 @@
+﻿// book.json
+{
+  "title": "知识库",
+  "author" : "Lewis"
+  "description": "记录知识，分享点滴",
+  "language": "zh-hans",
+  "plugins": [
+    "disqus",
+    "editlink",
+    "prism",
+    "-highlight",
+    "baidu",
+    "splitter",
+    "sitemap"
+  ],
+
+  {
+    "plugins": ["disqus"],
+    "pluginsConfig": {
+        "disqus": {
+            "shortName": "test"
+        }
+    }
+}
+
+  "pluginsConfig": {
+    "disqus": {
+      "shortName": "shareknowledge"
+    },
+    "editlink": {
+      "base": "https://github.com/zhaoda/webpack-handbook/blob/master/content",
+      "label": "编辑本页"
+    },
+    "baidu": {
+        "token": "a9787f0ab45d5e237bab522431d0a7ec"
+    },
+    "sitemap": {
+        "hostname": "https://www.shareknowledge.top/"
+    }
+  }
+}
