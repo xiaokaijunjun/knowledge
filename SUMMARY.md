@@ -2,10 +2,10 @@
 
 * [前言](README.md)
 
-### Python知识
+###Python知识
 * [ladp3查询信息](./python/ladp3查询信息.md)
 
-### Linux知识
+###Linux知识
 * [源码安装nginx](./linux/源码安装nginx.md)
 
 ###杂谈
