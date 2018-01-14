@@ -7,7 +7,7 @@
 
 ###Linux知识
 * [源码安装nginx](./linux/源码安装nginx.md)
-
+* [安装mysql](./linux/安装mysql.md)
 ###杂谈
 * [搭建shadowsocks](./other/搭建shadowsocks.md)
 
