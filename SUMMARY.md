@@ -1,16 +1,17 @@
-ï»¿# Summary
+# Summary
 
-* [å‰è¨€](README.md)
+* [Ç°ÑÔ](README.md)
 
-###PythonçŸ¥è¯†
-* [ladp3æŸ¥è¯¢ä¿¡æ¯](./python/ladp3æŸ¥è¯¢ä¿¡æ¯.md)
+###PythonÖªÊ¶
+* [ladp3²éÑ¯ĞÅÏ¢](./python/ladp3²éÑ¯ĞÅÏ¢.md)
 
-###LinuxçŸ¥è¯†
-* [æºç å®‰è£…nginx](./linux/æºç å®‰è£…nginx.md)
-* [å®‰è£…mysql](./linux/å®‰è£…mysql.md)
-* [KVMè™šæ‹ŸåŒ–](./linux/KVMè™šæ‹ŸåŒ–.md)
-###æ‚è°ˆ
-* [æ­å»ºshadowsocks](./other/æ­å»ºshadowsocks.md)
+###LinuxÖªÊ¶
+* [Ô´Âë°²×°nginx](./linux/Ô´Âë°²×°nginx.md)
+* [°²×°mysql](./linux/°²×°mysql.md)
+* [KVMĞéÄâ»¯](./linux/KVMĞéÄâ»¯.md)
+* [GitLabÓëJenkins½áºÏ¹¹½¨³ÖĞø¼¯³É(CI)»·¾³](./linux/GitLabÓëJenkins½áºÏ¹¹½¨³ÖĞø¼¯³É(CI)»·¾³.md)
+###ÔÓÌ¸
+* [´î½¨shadowsocks](./other/´î½¨shadowsocks.md)
 
 
 
