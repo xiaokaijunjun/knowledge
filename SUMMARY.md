@@ -8,7 +8,7 @@
 ###Linux知识
 * [源码安装nginx](./linux/源码安装nginx.md)
 * [安装mysql](./linux/安装mysql.md)
-* [安装mysql](./linux/KVM虚拟化.md)
+* [KVM虚拟化](./linux/KVM虚拟化.md)
 ###杂谈
 * [搭建shadowsocks](./other/搭建shadowsocks.md)
 
