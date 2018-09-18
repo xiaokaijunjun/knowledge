@@ -9,7 +9,7 @@
 * [源码安装nginx](./linux/源码安装nginx.md)
 * [安装mysql](./linux/安装mysql.md)
 * [KVM虚拟化](./linux/KVM虚拟化.md)
-* [GitLab与Jenkins结合构建持续集成(CI)环境](./linux/GitLab与Jenkins结合构建持续集成(CI)环境.md)
+* [GitLab与Jenkins结合构建持续集成(CI)环境](./linux/GitLab与Jenkins结合构建持续集成(CI)环境.md) 
 ###杂谈
 * [搭建shadowsocks](./other/搭建shadowsocks.md)
 
