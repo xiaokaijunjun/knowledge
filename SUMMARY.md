@@ -1,6 +1,6 @@
 # Summary
 
-* [Introduction](README.md)
+* [简介](README.md)
 * [Linux运维](linux/README.md)
     * [搭建redis](linux/redis.md)
     * [Tomcat环境搭建](linux/Tomcat环境搭建.md)
