@@ -51,8 +51,9 @@ git pull origin master
 
 二．Git从远程库克隆
 -------------------
+git config --global http.sslVerify false  不验证ssl证书
 
-git clone https://gitlab.bingosoft.net/项目路径
+git clone https://gitlab.bingosoft.net/cmbcmp/BSPRJ2018110.git
 
 三．扩展
 --------
