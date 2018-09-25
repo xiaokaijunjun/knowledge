@@ -9,6 +9,7 @@
     * [Nagios监控](linux/Nagios监控.md)
     * [zabbix源码安装及配置](linux/zabbix源码安装及配置.md)
     * [MySQL配置主从读写分离](linux/MySQL配置主从读写分离.md)
+    * [MySQL高可用之MHA](linux/MySQL高可用之MHA.md)
     * [GitLab与Jenkins结合构建持续集成(CI)环境](linux/GitLab与Jenkins结合构建持续集成环境.md)
 * [Python](python/README.md)
     * [第一节](python/example1.md)
