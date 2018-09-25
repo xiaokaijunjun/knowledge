@@ -1,0 +1,843 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>GitLab与Jenkins结合构建持续集成(CI)环境 · 黎明的奔跑</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Lewis">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-toc2/toc2.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../python/" />
+    
+    
+    <link rel="prev" href="MySQL高可用之MHA.html" />
+    
+
+    
+        <link rel="shortcut icon" href='../images/favicon.ico' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../images/favicon.ico' type="image/x-icon">
+    
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://www.shareknowledge.top" target="_blank" class="custom-link">Home</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                        <b>1.1.</b>
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                        <b>1.2.</b>
+                    
+                    Linux运维
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="redis.html">
+            
+                <a href="redis.html">
+            
+                    
+                        <b>1.2.1.</b>
+                    
+                    搭建redis
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="Tomcat环境搭建.html">
+            
+                <a href="Tomcat环境搭建.html">
+            
+                    
+                        <b>1.2.2.</b>
+                    
+                    Tomcat环境搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="KVM虚拟化.html">
+            
+                <a href="KVM虚拟化.html">
+            
+                    
+                        <b>1.2.3.</b>
+                    
+                    KVM虚拟化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="Git使用.html">
+            
+                <a href="Git使用.html">
+            
+                    
+                        <b>1.2.4.</b>
+                    
+                    Git使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="Nagios监控.html">
+            
+                <a href="Nagios监控.html">
+            
+                    
+                        <b>1.2.5.</b>
+                    
+                    Nagios监控
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="zabbix源码安装及配置.html">
+            
+                <a href="zabbix源码安装及配置.html">
+            
+                    
+                        <b>1.2.6.</b>
+                    
+                    zabbix源码安装及配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="MySQL配置主从读写分离.html">
+            
+                <a href="MySQL配置主从读写分离.html">
+            
+                    
+                        <b>1.2.7.</b>
+                    
+                    MySQL配置主从读写分离
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="MySQL高可用之MHA.html">
+            
+                <a href="MySQL高可用之MHA.html">
+            
+                    
+                        <b>1.2.8.</b>
+                    
+                    MySQL高可用之MHA
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.9" data-path="GitLab与Jenkins结合构建持续集成环境.html">
+            
+                <a href="GitLab与Jenkins结合构建持续集成环境.html">
+            
+                    
+                        <b>1.2.9.</b>
+                    
+                    GitLab与Jenkins结合构建持续集成(CI)环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../python/">
+            
+                <a href="../python/">
+            
+                    
+                        <b>1.3.</b>
+                    
+                    Python
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../python/example1.html">
+            
+                <a href="../python/example1.html">
+            
+                    
+                        <b>1.3.1.</b>
+                    
+                    第一节
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >GitLab与Jenkins结合构建持续集成(CI)环境</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p><strong>GitLab&#x4E0E;Jenkins&#x7ED3;&#x5408;&#x6784;&#x5EFA;&#x6301;&#x7EED;&#x96C6;&#x6210;(CI)&#x73AF;&#x5883;</strong></p>
+<h2 id="&#x4E00;&#xFF0E;&#x6301;&#x7EED;&#x96C6;&#x6210;&#x6982;&#x8FF0;&#x53CA;gitlab&#x4ECB;&#x7ECD;"><a name="&#x4E00;&#xFF0E;&#x6301;&#x7EED;&#x96C6;&#x6210;&#x6982;&#x8FF0;&#x53CA;gitlab&#x4ECB;&#x7ECD;" class="anchor-navigation-ex-anchor" href="#&#x4E00;&#xFF0E;&#x6301;&#x7EED;&#x96C6;&#x6210;&#x6982;&#x8FF0;&#x53CA;gitlab&#x4ECB;&#x7ECD;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E00;&#xFF0E;&#x6301;&#x7EED;&#x96C6;&#x6210;&#x6982;&#x8FF0;&#x53CA;gitlab&#x4ECB;&#x7ECD;</h2>
+<h3 id="1&#x6301;&#x7EED;&#x96C6;&#x6210;&#x6982;&#x8FF0;&#x53CA;&#x8FD0;&#x884C;&#x6D41;&#x7A0B;&#xFF1A;"><a name="1&#x6301;&#x7EED;&#x96C6;&#x6210;&#x6982;&#x8FF0;&#x53CA;&#x8FD0;&#x884C;&#x6D41;&#x7A0B;&#xFF1A;" class="anchor-navigation-ex-anchor" href="#1&#x6301;&#x7EED;&#x96C6;&#x6210;&#x6982;&#x8FF0;&#x53CA;&#x8FD0;&#x884C;&#x6D41;&#x7A0B;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a>1.&#x6301;&#x7EED;&#x96C6;&#x6210;&#x6982;&#x8FF0;&#x53CA;&#x8FD0;&#x884C;&#x6D41;&#x7A0B;&#xFF1A;</h3>
+<p>&#x6301;&#x7EED;&#x96C6;&#x6210;&#x6982;&#x8FF0;&#xFF1A;&#x6301;&#x7EED;&#x96C6;&#x6210;&#xFF08;Continuous
+integration&#xFF09;&#x6301;&#x7EED;&#x96C6;&#x6210;&#x662F;&#x6307;&#x5F00;&#x53D1;&#x8005;&#x5728;&#x4EE3;&#x7801;&#x7684;&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x9891;&#x7E41;&#x7684;&#x5C06;&#x4EE3;&#x7801;&#x90E8;&#x7F72;&#x96C6;&#x6210;&#x5230;&#x4E3B;&#x5E72;&#xFF0C;&#x5E76;&#x8FDB;&#x7A0B;&#x81EA;&#x52A8;&#x5316;&#x6D4B;&#x8BD5;&#x3002;</p>
+<p>&#x6301;&#x7EED;&#x4EA4;&#x4ED8;&#xFF1A;&#x6301;&#x7EED;&#x4EA4;&#x4ED8;&#x6307;&#x7684;&#x662F;&#x5728;&#x6301;&#x7EED;&#x96C6;&#x6210;&#x7684;&#x73AF;&#x5883;&#x57FA;&#x7840;&#x4E4B;&#x4E0A;&#xFF0C;&#x5C06;&#x4EE3;&#x7801;&#x90E8;&#x7F72;&#x5230;&#x9884;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x3002;</p>
+<p>&#x6301;&#x7EED;&#x90E8;&#x7F72;&#xFF1A;&#x5728;&#x6301;&#x7EED;&#x4EA4;&#x4ED8;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x628A;&#x90E8;&#x7F72;&#x5230;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x7684;&#x8FC7;&#x7A0B;&#x81EA;&#x52A8;&#x5316;&#x3002;</p>
+<h3 id="2github&#x548C;gitlab&#x7684;&#x533A;&#x522B;&#xFF1A;"><a name="2github&#x548C;gitlab&#x7684;&#x533A;&#x522B;&#xFF1A;" class="anchor-navigation-ex-anchor" href="#2github&#x548C;gitlab&#x7684;&#x533A;&#x522B;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a>2.GitHub&#x548C;GitLab&#x7684;&#x533A;&#x522B;&#xFF1A;</h3>
+<p>&#x76F8;&#x540C;&#x70B9;:
+&#x4E8C;&#x8005;&#x90FD;&#x662F;&#x57FA;&#x4E8E;web&#x7684;Git&#x4ED3;&#x5E93;&#xFF0C;&#x5728;&#x5F88;&#x5927;&#x7A0B;&#x5EA6;&#x4E0A;GitLab&#x662F;&#x4EFF;&#x7167;GitHub&#x6765;&#x505A;&#x7684;&#xFF0C;&#x5B83;&#x4EEC;&#x90FD;&#x63D0;&#x4F9B;&#x4E86;&#x5206;&#x4EAB;&#x5F00;&#x6E90;&#x9879;&#x76EE;&#x7684;&#x5E73;&#x53F0;&#xFF0C;&#x4E3A;&#x5F00;&#x53D1;&#x56E2;&#x961F;&#x63D0;&#x4F9B;&#x4E86;&#x5B58;&#x50A8;&#x3001;&#x5206;&#x4EAB;&#x3001;&#x53D1;&#x5E03;&#x548C;&#x5408;&#x4F5C;&#x5F00;&#x53D1;&#x9879;&#x76EE;&#x7684;&#x4E2D;&#x5FC3;&#x5316;&#x4E91;&#x5B58;&#x50A8;&#x7684;&#x573A;&#x6240;&#x3002;</p>
+<p>&#x4E0D;&#x540C;&#x70B9;&#xFF1A;</p>
+<p>1&#x3001;GitHub&#x5982;&#x679C;&#x8981;&#x4F7F;&#x7528;&#x79C1;&#x6709;&#x4ED3;&#x5E93;&#xFF0C;&#x662F;&#x9700;&#x8981;&#x4ED8;&#x8D39;&#x7684;&#x3002;GitLab&#x53EF;&#x4EE5;&#x5728;&#x4E0A;&#x9762;&#x521B;&#x5EFA;&#x79C1;&#x4EBA;&#x7684;&#x514D;&#x8D39;&#x4ED3;&#x5E93;&#x3002;</p>
+<p>2&#x3001;GitLab&#x8BA9;&#x5F00;&#x53D1;&#x56E2;&#x961F;&#x5BF9;&#x4ED6;&#x4EEC;&#x7684;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;&#x62E5;&#x6709;&#x66F4;&#x591A;&#x7684;&#x63A7;&#x5236;&#xFF0C;&#x76F8;&#x6BD4;&#x4E8E;GitHub&#xFF0C;&#x5B83;&#x6709;&#x4E0D;&#x5C11;&#x7684;&#x7279;&#x8272;&#xFF1A;&#x5141;&#x8BB8;&#x514D;&#x8D39;&#x8BBE;&#x7F6E;&#x4ED3;&#x5E93;&#x6743;&#x9650;&#xFF1B;&#x5141;&#x8BB8;&#x7528;&#x6237;&#x9009;&#x62E9;&#x5206;&#x4EAB;&#x4E00;&#x4E2A;project&#x7684;&#x90E8;&#x5206;&#x4EE3;&#x7801;&#xFF1B;&#x5141;&#x8BB8;&#x7528;&#x6237;&#x8BBE;&#x7F6E;project&#x7684;&#x83B7;&#x53D6;&#x6743;&#x9650;&#xFF0C;&#x8FDB;&#x4E00;&#x6B65;&#x7684;&#x63D0;&#x5347;&#x5B89;&#x5168;&#x6027;&#xFF1B;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x83B7;&#x53D6;&#x5230;&#x56E2;&#x961F;&#x6574;&#x4F53;&#x7684;&#x6539;&#x8FDB;&#x8FDB;&#x5EA6;&#xFF1B;&#x901A;&#x8FC7;innersourcing&#x8BA9;&#x4E0D;&#x5728;&#x6743;&#x9650;&#x8303;&#x56F4;&#x5185;&#x7684;&#x4EBA;&#x8BBF;&#x95EE;&#x4E0D;&#x5230;&#x8BE5;&#x8D44;&#x6E90;&#x3002;</p>
+<p>&#x603B;&#x7ED3;&#xFF1A;&#x4ECE;&#x4EE3;&#x7801;&#x79C1;&#x6709;&#x6027;&#x65B9;&#x9762;&#x6765;&#x770B;&#xFF0C;&#x6709;&#x65F6;&#x516C;&#x53F8;&#x5E76;&#x4E0D;&#x5E0C;&#x671B;&#x5458;&#x5DE5;&#x83B7;&#x53D6;&#x5230;&#x5168;&#x90E8;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;GitLab&#x65E0;&#x7591;&#x662F;&#x66F4;&#x597D;&#x7684;&#x9009;&#x62E9;&#x3002;&#x4F46;&#x5BF9;&#x4E8E;&#x5F00;&#x6E90;&#x9879;&#x76EE;&#x800C;&#x8A00;&#xFF0C;GitHub&#x4F9D;&#x7136;&#x662F;&#x4EE3;&#x7801;&#x6258;&#x7BA1;&#x7684;&#x9996;&#x9009;&#x3002;</p>
+<p>github &#x662F;&#x4E00;&#x4E2A;&#x57FA;&#x4E8E;git&#x5B9E;&#x73B0;&#x7684;&#x5728;&#x7EBF;&#x4EE3;&#x7801;&#x6258;&#x7BA1;&#x4ED3;&#x5E93;&#xFF0C;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x754C;&#x9762;&#xFF0C;&#x5411;&#x4E92;&#x8054;&#x7F51;&#x5F00;&#x653E;</p>
+<p>gitlab
+&#x662F;&#x4E00;&#x4E2A;&#x57FA;&#x4E8E;git&#x5B9E;&#x73B0;&#x7684;&#x5728;&#x7EBF;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;&#x6258;&#x7BA1;&#x8F6F;&#x4EF6;&#xFF0C;&#x4E00;&#x822C;&#x7528;&#x4E8E;&#x5728;&#x4F01;&#x4E1A;&#x5185;&#x90E8;&#x7F51;&#x7EDC;&#x642D;&#x5EFA;git&#x79C1;&#x670D;</p>
+<p>&#x6CE8;&#xFF1A; gitlab-ce &#x793E;&#x533A;&#x7248; &#xFF1B; gitlab-ee&#x662F;&#x4F01;&#x4E1A;&#x7248;&#xFF0C;&#x6536;&#x8D39;</p>
+<h3 id="3&#x6301;&#x7EED;&#x96C6;&#x6210;&#x7CFB;&#x7EDF;&#x7684;&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;&#x5927;&#x6982;&#x5206;&#x4E3A;&#x4EE5;&#x4E0B;&#x51E0;&#x6B65;"><a name="3&#x6301;&#x7EED;&#x96C6;&#x6210;&#x7CFB;&#x7EDF;&#x7684;&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;&#x5927;&#x6982;&#x5206;&#x4E3A;&#x4EE5;&#x4E0B;&#x51E0;&#x6B65;" class="anchor-navigation-ex-anchor" href="#3&#x6301;&#x7EED;&#x96C6;&#x6210;&#x7CFB;&#x7EDF;&#x7684;&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;&#x5927;&#x6982;&#x5206;&#x4E3A;&#x4EE5;&#x4E0B;&#x51E0;&#x6B65;"><i class="fa fa-link" aria-hidden="true"></i></a>3.&#x6301;&#x7EED;&#x96C6;&#x6210;&#x7CFB;&#x7EDF;&#x7684;&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;&#x5927;&#x6982;&#x5206;&#x4E3A;&#x4EE5;&#x4E0B;&#x51E0;&#x6B65;</h3>
+<p>1, &#x5F00;&#x53D1;&#x8005;&#x5C06;&#x65B0;&#x7248;&#x672C;push&#x5230;Gitlab&#x3002;</p>
+<p>2, Gitlab&#x968F;&#x540E;&#x89E6;&#x53D1;jenkins master&#x7ED3;&#x70B9;&#x8FDB;&#x884C;&#x4E00;&#x6B21;build&#x3002;(&#x901A;&#x8FC7;web hook&#x6216;&#x8005;&#x5B9A;&#x65F6;&#x68C0;&#x6D4B;)</p>
+<p>3, jenkins
+master&#x7ED3;&#x70B9;&#x5C06;&#x8FD9;&#x4E2A;build&#x4EFB;&#x52A1;&#x5206;&#x914D;&#x7ED9;&#x82E5;&#x5E72;&#x4E2A;&#x6CE8;&#x518C;&#x7684;slave&#x7ED3;&#x70B9;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#xFF0C;&#x8FD9;&#x4E2A;slave&#x7ED3;&#x70B9;&#x6839;&#x636E;&#x4E00;&#x4E2A;&#x4E8B;&#x5148;&#x8BBE;&#x7F6E;&#x597D;&#x7684;&#x811A;&#x672C;&#x8FDB;&#x884C;build&#x3002;&#x8FD9;&#x4E2A;&#x811A;&#x672C;&#x53EF;&#x4EE5;&#x505A;&#x7684;&#x4E8B;&#x60C5;&#x5F88;&#x591A;&#xFF0C;&#x6BD4;&#x5982;&#x7F16;&#x8BD1;&#xFF0C;&#x6D4B;&#x8BD5;&#xFF0C;&#x751F;&#x6210;&#x6D4B;&#x8BD5;&#x62A5;&#x544A;&#x7B49;&#x7B49;&#x3002;&#x8FD9;&#x4E9B;&#x539F;&#x672C;&#x9700;&#x8981;&#x624B;&#x52A8;&#x5B8C;&#x6210;&#x7684;&#x4EFB;&#x52A1;&#x90FD;&#x53EF;&#x4EE5;&#x4EA4;&#x7ED9;jenkins&#x6765;&#x505A;&#x3002;</p>
+<p>4, &#x6211;&#x4EEC;&#x5728;build&#x4E2D;&#x8981;&#x8FDB;&#x884C;&#x7F16;&#x8BD1;&#xFF0C;&#x8FD9;&#x91CC;&#x4F7F;&#x7528;&#x4E86;&#x5206;&#x5E03;&#x5F0F;&#x7F16;&#x8BD1;&#x5668;distcc&#x6765;&#x52A0;&#x5FEB;&#x7F16;&#x8BD1;&#x901F;&#x5EA6;&#x3002;</p>
+<h2 id="&#x4E8C;&#xFF0E;&#x642D;&#x5EFA;gitlab&#x5E73;&#x53F0;"><a name="&#x4E8C;&#xFF0E;&#x642D;&#x5EFA;gitlab&#x5E73;&#x53F0;" class="anchor-navigation-ex-anchor" href="#&#x4E8C;&#xFF0E;&#x642D;&#x5EFA;gitlab&#x5E73;&#x53F0;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E8C;&#xFF0E;&#x642D;&#x5EFA;GitLab&#x5E73;&#x53F0;</h2>
+<p>&#x5B9E;&#x9A8C;&#x73AF;&#x5883;&#xFF1A; centos7.4 &#x865A;&#x62DF;&#x673A;&#x9700;&#x8981;6G&#xFF0C;&#x4E0D;&#x7136;&#x540E;&#x671F;&#x8FD0;&#x884C;&#x65F6;&#xFF0C;&#x5185;&#x5B58;&#x4E0D;&#x591F;&#x7528;&#xFF0C;&#x76F4;&#x63A5;&#x62A5;&#x9519;&#x3002;</p>
+<h3 id="&#x5B89;&#x88C5;gitlab&#x9700;&#x8981;&#x7684;&#x7EC4;&#x4EF6;"><a name="&#x5B89;&#x88C5;gitlab&#x9700;&#x8981;&#x7684;&#x7EC4;&#x4EF6;" class="anchor-navigation-ex-anchor" href="#&#x5B89;&#x88C5;gitlab&#x9700;&#x8981;&#x7684;&#x7EC4;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B89;&#x88C5;Gitlab&#x9700;&#x8981;&#x7684;&#x7EC4;&#x4EF6;</h3>
+<p>yum install curl policycoreutils openssh-server openssh-clients postfix -y</p>
+<p>&#x9ED8;&#x8BA4;&#xFF0C;&#x4F7F;&#x7528; Postfix &#x53D1;&#x9001;&#x90AE;&#x4EF6;</p>
+<p>systemctl start postfix;systemctl enable postfix</p>
+<p>iptables &#x2013;F</p>
+<p>systemctl stop firewalld;systemctl disable firewalld</p>
+<h3 id="&#x5B89;&#x88C5;gitlab"><a name="&#x5B89;&#x88C5;gitlab" class="anchor-navigation-ex-anchor" href="#&#x5B89;&#x88C5;gitlab"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B89;&#x88C5;GitLab</h3>
+<p>&#x65B9;&#x6CD5;&#x4E00;&#xFF1A;&#x4F7F;&#x7528;&#x6E05;&#x534E;&#x6E90;yum&#x5B89;&#x88C5;</p>
+<p>[root\@lewis63 yum.repos.d]# cat gitlab_gitlab-ce.repo</p>
+<p>[gitlab-ce]</p>
+<p>name=gitlab-ce</p>
+<p>baseurl=<a href="http://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7" target="_blank">http://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7</a></p>
+<p>repo_gpgcheck=0</p>
+<p>gpgcheck=0</p>
+<p>enabled=1</p>
+<p>gpgkey=<a href="https://packages.gitlab.com/gpg.key" target="_blank">https://packages.gitlab.com/gpg.key</a></p>
+<p>[root\@lewis63 ~]# yum install gitlab-ce &#x2013;y</p>
+<p>&#x65B9;&#x6CD5;&#x4E8C;&#xFF1A;&#x672C;&#x5730;&#x4E0A;rpm&#x5305;&#x5B89;&#x88C5;</p>
+<p>[root\@lewis63 ~]# rpm -ivh gitlab-ce-10.2.3-ce.0.el7.x86_64.rpm</p>
+<p><img src="media/9ef5dd415af2dd215a80945c002fe55c.png" alt=""></p>
+<p>&#x5B89;&#x88C5;&#x5B8C;&#x6210;&#x6709;&#x63D0;&#x793A;&#x8BA9;&#x914D;&#x7F6E;gitlab&#x8BBF;&#x95EE;&#x5730;&#x5740;&#xFF1A;</p>
+<p>[root\@lewis63 ~]# vim /etc/gitlab/gitlab.rb</p>
+<p>external_url &apos;<a href="http://192.168.1.63" target="_blank">http://192.168.1.63</a>&apos; #&#x4FEE;&#x6539;&#x6210;&#x81EA;&#x5DF1;IP&#x5730;&#x5740;</p>
+<p><strong>&#x91CD;&#x65B0;&#x914D;&#x7F6E;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;</strong></p>
+<p>gitlab-ctl reconfigure
+#&#x91CD;&#x65B0;&#x914D;&#x7F6E;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x3002;&#x4FEE;&#x6539;&#x4E86;gitlab&#x670D;&#x52A1;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x540E;&#xFF0C;&#x90FD;&#x9700;&#x8981;&#x6267;&#x884C;&#x4E00;&#x4E0B;&#x8FD9;&#x4E2A;&#x547D;&#x4EE4;&#x3002;&#x8BA9;&#x5404;&#x4E2A;&#x670D;&#x52A1;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x91CD;&#x65B0;&#x52A0;&#x8F7D;&#x4E00;&#x4E0B;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x3002;</p>
+<p>[root\@lewis63 ~]# gitlab-ctl status
+#&#x53EF;&#x4EE5;&#x4F7F;&#x7528;gitlab-ctl&#x7BA1;&#x7406;gitlab&#xFF0C;&#x4F8B;&#x5982;<strong>&#x67E5;&#x770B;gitlab&#x72B6;&#x6001;</strong>&#xFF1A;</p>
+<p>run: gitaly: (pid 3404) 79s; run: log: (pid 3106) 126s</p>
+<p>run: gitlab-monitor: (pid 3420) 78s; run: log: (pid 3169) 114s</p>
+<p>run: gitlab-workhorse: (pid 3392) 80s; run: log: (pid 3062) 139s</p>
+<p>run: logrotate: (pid 3090) 132s; run: log: (pid 3089) 132s</p>
+<p>run: nginx: (pid 3069) 138s; run: log: (pid 3068) 138s</p>
+<p>run: node-exporter: (pid 3154) 120s; run: log: (pid 3153) 120s</p>
+<p>run: postgres-exporter: (pid 3446) 77s; run: log: (pid 3317) 96s</p>
+<p>run: postgresql: (pid 2841) 198s; run: log: (pid 2840) 198s</p>
+<p>run: prometheus: (pid 3436) 78s; run: log: (pid 3249) 102s</p>
+<p>run: redis: (pid 2781) 209s; run: log: (pid 2780) 209s</p>
+<p>run: redis-exporter: (pid 3222) 108s; run: log: (pid 3221) 108s</p>
+<p>run: sidekiq: (pid 3045) 146s; run: log: (pid 3044) 146s</p>
+<p>run: unicorn: (pid 3007) 152s; run: log: (pid 3006) 152s</p>
+<p>[root\@lewis63 ~]# netstat -anput | grep 80</p>
+<p>tcp 0 0 127.0.0.1:8080 0.0.0.0:* LISTEN 3040/unicorn master</p>
+<p>tcp 0 0 0.0.0.0:80 0.0.0.0:* LISTEN 3069/nginx: master</p>
+<p>tcp 0 0 0.0.0.0:8060 0.0.0.0:* LISTEN 3069/nginx: master</p>
+<p><strong>&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;nginx&#x505A;&#x4E3A;web&#x754C;&#x9762;</strong></p>
+<p><strong>&#x6CE8;&#xFF1A;&#x5982;&#x679C;&#x540E;&#x671F;web&#x754C;&#x9762;&#x8BBF;&#x95EE;&#x65F6;&#xFF0C;&#x603B;&#x62A5;502&#xFF0C;&#x8981;&#x628A;&#x9632;&#x706B;&#x5899;&#x6E05;&#x7A7A;&#x89C4;&#x5219;&#xFF0C;&#x53E6;&#x5916;&#x5185;&#x5B58;&#x8981;&#x5927;&#x4E8E;4G&#xFF0C;&#x4E0D;&#x7136;&#x540E;&#x5185;&#x5B58;&#x4E0D;&#x8DB3;&#xFF0C;&#x4E5F;&#x62A5;502</strong></p>
+<h3 id="&#x767B;&#x5F55;gitlab"><a name="&#x767B;&#x5F55;gitlab" class="anchor-navigation-ex-anchor" href="#&#x767B;&#x5F55;gitlab"><i class="fa fa-link" aria-hidden="true"></i></a>&#x767B;&#x5F55;GitLab</h3>
+<p>&#x7B2C;&#x4E00;&#x6B21;&#x767B;&#x5F55;gitlab&#xFF0C;&#x9700;&#x8981;&#x4E3A;root&#x7528;&#x6237;&#x4FEE;&#x6539;&#x5BC6;&#x7801;&#xFF0C;root&#x7528;&#x6237;&#x4E5F;&#x662F;gitlab&#x7684;&#x8D85;&#x7EA7;&#x7BA1;&#x7406;&#x5458;</p>
+<p><img src="media/171a40265893f90b3d2e1f5ad767dacc.png" alt=""></p>
+<p>&#x5173;&#x95ED;GitLab&#x6CE8;&#x518C;&#x529F;&#x80FD;&#xFF1A;</p>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x6CE8;&#x518C;&#x8D26;&#x53F7;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x6CE8;&#x518C;&#x529F;&#x80FD;&#xFF0C;&#x53EF;&#x4EE5;&#x5173;&#x95ED;&#x3002;</p>
+<p>&#x70B9;Admin area -&#x300B; setting -&#x300B; &#x53D6;&#x6D88;sign-up enabled&#x6807;&#x7B7E;&#x524D;&#x5BF9;&#x52FE;</p>
+<p><img src="media/9b6a1cadabe17d4f2a08edc345ee630c.png" alt=""></p>
+<h3 id="&#x7BA1;&#x7406;gitlab"><a name="&#x7BA1;&#x7406;gitlab" class="anchor-navigation-ex-anchor" href="#&#x7BA1;&#x7406;gitlab"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7BA1;&#x7406;GitLab</h3>
+<p>&#x5173;&#x95ED;gitlab&#xFF1A; # gitlab-ctl stop</p>
+<p>&#x542F;&#x52A8;gitlab&#xFF1A; # gitlab-ctl start</p>
+<p>&#x91CD;&#x542F;gitlab&#xFF1A; # gitlab-ctl restart</p>
+<p>gitlab&#x4E3B;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF1A;/etc/gitlab/gitlab.rb //&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x4E00;&#x4E9B;&#x90AE;&#x4EF6;&#x670D;&#x52A1;&#x7B49;</p>
+<p>&#x65E5;&#x5FD7;&#x5730;&#x5740;&#xFF1A;/var/log/gitlab/ // &#x5BF9;&#x5E94;&#x5404;&#x670D;&#x52A1;</p>
+<p>&#x670D;&#x52A1;&#x5730;&#x5740;&#xFF1A;/var/opt/gitlab/ // &#x5BF9;&#x5E94;&#x5404;&#x670D;&#x52A1;&#x7684;&#x4E3B;&#x76EE;&#x5F55;</p>
+<p>&#x4ED3;&#x5E93;&#x5730;&#x5740;&#xFF1A;/var/opt/gitlab/git-data //&#x8BB0;&#x5F55;&#x9879;&#x76EE;&#x4ED3;&#x5E93;&#x7B49;&#x63D0;&#x4EA4;&#x4FE1;&#x606F;</p>
+<p>&#x91CD;&#x7F6E;&#x914D;&#x7F6E;&#xFF1A;gitlab-ctl reconfigure //&#x4E0D;&#x8981;&#x4E71;&#x7528;&#xFF0C;&#x4F1A;&#x91CD;&#x7F6E;&#x4E3A;&#x6700;&#x539F;&#x59CB;&#x7684;&#x914D;&#x7F6E;</p>
+<p>&#x91CD;&#x542F;&#x670D;&#x52A1;&#xFF1A;gitlab-ctl stop/start/restart //&#x542F;&#x52A8;&#x547D;&#x4EE4;</p>
+<h3 id="centos7&#x90E8;&#x7F72;&#x6C49;&#x5316;&#x7248;gitlab"><a name="centos7&#x90E8;&#x7F72;&#x6C49;&#x5316;&#x7248;gitlab" class="anchor-navigation-ex-anchor" href="#centos7&#x90E8;&#x7F72;&#x6C49;&#x5316;&#x7248;gitlab"><i class="fa fa-link" aria-hidden="true"></i></a>centos7&#x90E8;&#x7F72;&#x6C49;&#x5316;&#x7248;GitLab</h3>
+<p>&#x83B7;&#x53D6;gitlab&#x6C49;&#x5316;&#x5305;</p>
+<p>&#x4E0B;&#x8F7D;git&#xFF1A;yum install -y git</p>
+<p>&#x514B;&#x9686;&#x83B7;&#x53D6;&#x6C49;&#x5316;&#x7248;&#x672C;&#x5E93;</p>
+<p>&#x4E0B;&#x8F7D;&#x6700;&#x65B0;&#x7684;&#x6C49;&#x5316;&#x5305;&#xFF1A;</p>
+<p>git clone <a href="https://gitlab.com/xhang/gitlab.git" target="_blank">https://gitlab.com/xhang/gitlab.git</a></p>
+<p>&#x5982;&#x679C;&#x4E0B;&#x8F7D;&#x8001;&#x7248;&#x672C;&#x7684;&#x6C49;&#x5316;&#x5305;&#xFF0C;&#x9700;&#x8981;&#x52A0;&#x4E0A;&#x8001;&#x7248;&#x672C;&#x7684;&#x5206;&#x652F;&#xFF1A;</p>
+<p>[root\@lewis63 ~]# git clone <a href="https://gitlab.com/xhang/gitlab.git" target="_blank">https://gitlab.com/xhang/gitlab.git</a> -b v10.2.3-zh</p>
+<p>&#x67E5;&#x770B;&#x8BE5;&#x6C49;&#x5316;&#x8865;&#x4E01;&#x7684;&#x7248;&#x672C;</p>
+<p>cat gitlab/VERSION</p>
+<p>gitlab-ctl stop #&#x505C;&#x6B62;gitlab&#x670D;&#x52A1;</p>
+<p>cd /root/gitlab #&#x5207;&#x6362;&#x5230;gitlab&#x6C49;&#x5316;&#x5305;&#x6240;&#x5728;&#x7684;&#x76EE;&#x5F55;</p>
+<p><strong>&#x6BD4;&#x8F83;&#x6C49;&#x5316;&#x6807;&#x7B7E;&#x548C;&#x539F;&#x6807;&#x7B7E;&#xFF0C;&#x5BFC;&#x51FA; patch &#x7528;&#x7684; diff &#x6587;&#x4EF6;&#x5230;/root&#x4E0B;</strong></p>
+<p>git diff v10.2.3 v10.2.3-zh &gt; ../10.2.3-zh.diff</p>
+<p>yum install patch -y</p>
+<p>cd #&#x56DE;&#x5230;root</p>
+<p>&#x5C06;10.2.3-zh.diff&#x4F5C;&#x4E3A;&#x8865;&#x4E01;&#x66F4;&#x65B0;&#x5230;gitlab&#x4E2D;</p>
+<p>patch -d /opt/gitlab/embedded/service/gitlab-rails -p1 \&lt; 10.2.3-zh.diff</p>
+<p>&#x542F;&#x52A8;&#x670D;&#x52A1;&#xFF0C;<strong>&#x7B49;1&#x5206;&#x949F;&#xFF0C;&#x518D;&#x53BB;&#x8BBF;&#x95EE;web&#x9875;&#x9762;&#x3002;&#x8BBF;&#x95EE;&#x592A;&#x5FEB;&#x4F1A;&#x663E;&#x793A;502&#x9519;&#x8BEF;&#x3002;</strong></p>
+<p>gitlab-ctl start</p>
+<p><img src="media/286ff082480a506fce8d7ccd3ebc30e8.png" alt=""></p>
+<h2 id="&#x4E09;&#xFF0E;gitlab&#x65E5;&#x5E38;&#x4F7F;&#x7528;"><a name="&#x4E09;&#xFF0E;gitlab&#x65E5;&#x5E38;&#x4F7F;&#x7528;" class="anchor-navigation-ex-anchor" href="#&#x4E09;&#xFF0E;gitlab&#x65E5;&#x5E38;&#x4F7F;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E09;&#xFF0E;GitLab&#x65E5;&#x5E38;&#x4F7F;&#x7528;</h2>
+<h3 id="1&#x65B0;&#x5EFA;&#x9879;&#x76EE;"><a name="1&#x65B0;&#x5EFA;&#x9879;&#x76EE;" class="anchor-navigation-ex-anchor" href="#1&#x65B0;&#x5EFA;&#x9879;&#x76EE;"><i class="fa fa-link" aria-hidden="true"></i></a>1.&#x65B0;&#x5EFA;&#x9879;&#x76EE;</h3>
+<p>&#x5148;&#x521B;&#x5EFA;&#x7FA4;&#x7EC4;</p>
+<p><img src="media/a12c5a7d9dcf580e51fbe7cb3b7d33ed.png" alt=""></p>
+<p>&#x521B;&#x5EFA;&#x9879;&#x76EE;</p>
+<p><img src="media/af92b3ed317a0d3b5150ed43781cdbbd.png" alt=""></p>
+<p><img src="media/7ba821c276df8fb1845b1bed78ed028c.png" alt=""></p>
+<p>&#x53EF;&#x89C1;&#x7B49;&#x7EA7;&#xFF1A;</p>
+<ol>
+<li><p>Private&#xFF1A;&#x79C1;&#x6709;&#x7684;&#xFF0C;&#x53EA;&#x6709;&#x81EA;&#x5DF1;&#x6216;&#x8005;&#x7EC4;&#x5185;&#x6210;&#x5458;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;</p>
+</li>
+<li><p>Internet&#xFF1A;&#x6240;&#x6709;&#x767B;&#x5F55;gitlab&#x5E73;&#x53F0;&#x7684;&#x7528;&#x6237;&#x90FD;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;</p>
+</li>
+<li><p>Public&#xFF1A;&#x516C;&#x5F00;&#x7684;&#xFF0C;&#x6240;&#x6709;&#x4EBA;&#x90FD;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#xFF0C;&#x5373;&#x4E0D;&#x767B;&#x5F55;gitlab&#x4E5F;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;</p>
+</li>
+</ol>
+<h3 id="2&#x521B;&#x5EFA;&#x7528;&#x6237;"><a name="2&#x521B;&#x5EFA;&#x7528;&#x6237;" class="anchor-navigation-ex-anchor" href="#2&#x521B;&#x5EFA;&#x7528;&#x6237;"><i class="fa fa-link" aria-hidden="true"></i></a>2.&#x521B;&#x5EFA;&#x7528;&#x6237;</h3>
+<p><img src="media/3c6874b65d678ed9ebfce16e95c2666c.png" alt=""></p>
+<h3 id="3&#x91CD;&#x7F6E;&#x7528;&#x6237;&#x5BC6;&#x7801;"><a name="3&#x91CD;&#x7F6E;&#x7528;&#x6237;&#x5BC6;&#x7801;" class="anchor-navigation-ex-anchor" href="#3&#x91CD;&#x7F6E;&#x7528;&#x6237;&#x5BC6;&#x7801;"><i class="fa fa-link" aria-hidden="true"></i></a>3.&#x91CD;&#x7F6E;&#x7528;&#x6237;&#x5BC6;&#x7801;</h3>
+<p>&#x65B9;&#x6CD5;1.&#x767B;&#x5F55;&#x90AE;&#x7BB1;</p>
+<p><img src="media/f1fb279433a8f97b7b4f4b38b4c1d93f.png" alt=""></p>
+<p>&#x65B9;&#x6CD5;2.&#x4FEE;&#x6539;&#x5BC6;&#x7801;</p>
+<p>&#x9009;&#x62E9;Admin area -&#x300B;&#x7528;&#x6237;-&#x300B;&#x9009;&#x4E2D;&#x7528;&#x6237;-&#x300B;&#x7F16;&#x8F91;</p>
+<p><img src="media/0689da5d07f406d06069f5303b7bed76.png" alt=""></p>
+<h3 id="4&#x5220;&#x9664;&#x7528;&#x6237;"><a name="4&#x5220;&#x9664;&#x7528;&#x6237;" class="anchor-navigation-ex-anchor" href="#4&#x5220;&#x9664;&#x7528;&#x6237;"><i class="fa fa-link" aria-hidden="true"></i></a>4.&#x5220;&#x9664;&#x7528;&#x6237;</h3>
+<p>&#x5F53;&#x5BF9;&#x65B9;&#x79BB;&#x804C;&#x65F6;&#x5019;&#xFF0C;&#x4E3A;&#x4E86;&#x5B89;&#x5168;&#x8D77;&#x89C1;&#xFF0C;&#x9700;&#x8981;&#x5220;&#x9664;&#x5BF9;&#x65B9;&#x7684;gitlab&#x6743;&#x9650;&#xFF0C;&#x907F;&#x514D;&#x673A;&#x5BC6;&#x4FE1;&#x606F;&#x4E22;&#x5931;&#xFF0C;&#x64CD;&#x4F5C;&#x65B9;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="media/e5567fe276e2ca275a21df9d733a758c.png" alt=""></p>
+<h3 id="5&#x6DFB;&#x52A0;&#x7528;&#x6237;&#x5230;&#x7FA4;&#x7EC4;"><a name="5&#x6DFB;&#x52A0;&#x7528;&#x6237;&#x5230;&#x7FA4;&#x7EC4;" class="anchor-navigation-ex-anchor" href="#5&#x6DFB;&#x52A0;&#x7528;&#x6237;&#x5230;&#x7FA4;&#x7EC4;"><i class="fa fa-link" aria-hidden="true"></i></a>5.&#x6DFB;&#x52A0;&#x7528;&#x6237;&#x5230;&#x7FA4;&#x7EC4;</h3>
+<p><img src="media/9fe82650352a5abf41d730c8931360a0.png" alt=""></p>
+<h3 id="6&#x6DFB;&#x52A0;&#x4EE3;&#x7801;"><a name="6&#x6DFB;&#x52A0;&#x4EE3;&#x7801;" class="anchor-navigation-ex-anchor" href="#6&#x6DFB;&#x52A0;&#x4EE3;&#x7801;"><i class="fa fa-link" aria-hidden="true"></i></a>6.&#x6DFB;&#x52A0;&#x4EE3;&#x7801;</h3>
+<p><img src="media/78de4c25994a95f62c3fcc5be5f74f43.png" alt=""></p>
+<h3 id="&#x5BFC;&#x51FA;&#x514B;&#x9686;&#x9879;&#x76EE;"><a name="&#x5BFC;&#x51FA;&#x514B;&#x9686;&#x9879;&#x76EE;" class="anchor-navigation-ex-anchor" href="#&#x5BFC;&#x51FA;&#x514B;&#x9686;&#x9879;&#x76EE;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5BFC;&#x51FA;&#x514B;&#x9686;&#x9879;&#x76EE;</h3>
+<p>&#x5B89;&#x88C5;git</p>
+<p>yum install git -y</p>
+<p>&#x4E0B;&#x8F7D;&#x9879;&#x76EE;</p>
+<p>[root\@lewis63 ~]# git clone
+<a href="git@192.168.1.63:root/cloudmaster.git">git\@192.168.1.63:root/cloudmaster.git</a></p>
+<p><img src="media/3fbedc87bd950ade61e6122d0ec4ca12.png" alt=""></p>
+<p>&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;http&#x534F;&#x8BAE;&#x4E0B;&#x8F7D;</p>
+<p>[root\@lewis63 ~]# git clone <a href="http://192.168.1.63/root/cloudmaster.git" target="_blank">http://192.168.1.63/root/cloudmaster.git</a></p>
+<p>Cloning into &apos;cloudmaster&apos;...</p>
+<p>Username for &apos;<a href="http://192.168.1.63" target="_blank">http://192.168.1.63</a>&apos;: liukai</p>
+<p>Password for &apos;<a href="http://liukai\@192.168.1.63&apos;:&#x5BC6;&#x7801;" target="_blank">http://liukai\@192.168.1.63&apos;:&#x5BC6;&#x7801;</a></p>
+<p>&#x67E5;&#x770B;&#x514B;&#x9686;&#x4E0B;&#x6765;&#x7684;&#x4EE3;&#x7801;</p>
+<p>[root\@lewis63 ~]# ls cloudmaster/ -a</p>
+<p>. .. .git index.html</p>
+<h3 id="8&#x521D;&#x6B21;&#x8FD0;&#x884C;git&#x524D;&#x914D;&#x7F6E;"><a name="8&#x521D;&#x6B21;&#x8FD0;&#x884C;git&#x524D;&#x914D;&#x7F6E;" class="anchor-navigation-ex-anchor" href="#8&#x521D;&#x6B21;&#x8FD0;&#x884C;git&#x524D;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>8.&#x521D;&#x6B21;&#x8FD0;&#x884C;Git&#x524D;&#x914D;&#x7F6E;</h3>
+<p>&#x4E00;&#x822C;&#x5728;&#x65B0;&#x7684;&#x7CFB;&#x7EDF;&#x4E0A;&#xFF0C;&#x6211;&#x4EEC;&#x90FD;&#x9700;&#x8981;&#x5148;&#x914D;&#x7F6E;&#x4E0B;&#x81EA;&#x5DF1;&#x7684; Git
+&#x5DE5;&#x4F5C;&#x73AF;&#x5883;&#x3002;&#x914D;&#x7F6E;&#x5DE5;&#x4F5C;&#x53EA;&#x9700;&#x4E00;&#x6B21;&#xFF0C;&#x4EE5;&#x540E;&#x5347;&#x7EA7;&#x65F6;&#x8FD8;&#x4F1A;&#x6CBF;&#x7528;&#x73B0;&#x5728;&#x7684;&#x914D;&#x7F6E;&#x3002;</p>
+<p>&#x7B2C;&#x4E00;&#x4E2A;&#x8981;&#x914D;&#x7F6E;&#x7684;&#x662F;&#x4F60;&#x4E2A;&#x4EBA;&#x7684;&#x7528;&#x6237;&#x540D;&#x79F0;&#x548C;&#x7535;&#x5B50;&#x90AE;&#x4EF6;&#x5730;&#x5740;&#x3002;&#x8FD9;&#x4E24;&#x6761;&#x914D;&#x7F6E;&#x5F88;&#x91CD;&#x8981;&#xFF0C;&#x6BCF;&#x6B21; Git
+&#x63D0;&#x4EA4;&#x65F6;&#x90FD;&#x4F1A;&#x5F15;&#x7528;&#x8FD9;&#x4E24;&#x6761;&#x4FE1;&#x606F;&#xFF0C;&#x8BF4;&#x660E;&#x662F;&#x8C01;&#x63D0;&#x4EA4;&#x4E86;&#x66F4;&#x65B0;&#xFF0C;&#x6240;&#x4EE5;&#x4F1A;&#x968F;&#x66F4;&#x65B0;&#x5185;&#x5BB9;&#x4E00;&#x8D77;&#x88AB;&#x6C38;&#x4E45;&#x7EB3;&#x5165;&#x5386;&#x53F2;&#x8BB0;&#x5F55;&#x3002;</p>
+<p>git&#x8FD0;&#x884C;&#x7684;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x6709;&#x70B9;&#x50CF;.bashrc&#xFF0C;&#x51B3;&#x5B9A;&#x4E86; Git
+&#x5728;&#x5404;&#x4E2A;&#x73AF;&#x8282;&#x7684;&#x5177;&#x4F53;&#x5DE5;&#x4F5C;&#x65B9;&#x5F0F;&#x548C;&#x884C;&#x4E3A;&#x3002;&#x8FD9;&#x4E9B;&#x53D8;&#x91CF;&#x53EF;&#x4EE5;&#x5B58;&#x653E;&#x5728;&#x4EE5;&#x4E0B;&#x4E24;&#x4E2A;&#x7684;&#x5730;&#x65B9;&#xFF1A;</p>
+<p>1&#x3001;~/.gitconfig &#x6587;&#x4EF6;&#xFF1A;&#x7528;&#x6237;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x53EA;&#x9002;&#x7528;&#x4E8E;&#x8BE5;&#x7528;&#x6237;&#x3002;&#x82E5;&#x4F7F;&#x7528; git config
+&#x65F6;&#x7528; --global &#x9009;&#x9879;&#xFF0C;&#x8BFB;&#x5199;&#x7684;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x3002;</p>
+<p>&#x4F8B;&#x5B50;&#xFF1A;&#x4FEE;&#x6539;&#x7528;&#x6237;&#x4FE1;&#x606F;</p>
+<p>[root\@lewis63 ~]# git config --global user.name &quot;liukai&quot;</p>
+<p>[root\@lewis63 ~]# git config --global user.email &quot;xiaokai0312\@163.com&quot;</p>
+<p>[root\@lewis63 ~]# cat ~/.gitconfig</p>
+<p>[user]</p>
+<p>name = liukai</p>
+<p>email = <a href="mailto:xiaokai0312@163.com" target="_blank">xiaokai0312@163.com</a></p>
+<p>2&#x3001;&#x5F53;&#x524D;&#x9879;&#x76EE;&#x7684; Git &#x76EE;&#x5F55;&#x4E2D;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;&#x4E2D;&#x7684; .git/config
+&#x6587;&#x4EF6;&#xFF09;&#xFF1A;&#x8FD9;&#x91CC;&#x7684;&#x914D;&#x7F6E;&#x4EC5;&#x4EC5;&#x9488;&#x5BF9;&#x5F53;&#x524D;&#x9879;&#x76EE;&#x6709;&#x6548;&#x3002;&#x6BCF;&#x4E00;&#x4E2A;&#x7EA7;&#x522B;&#x7684;&#x914D;&#x7F6E;&#x90FD;&#x4F1A;&#x8986;&#x76D6;&#x4E0A;&#x5C42;&#x7684;&#x76F8;&#x540C;&#x914D;&#x7F6E;&#xFF0C;&#x6240;&#x4EE5;
+.git/config &#x91CC;&#x7684;&#x914D;&#x7F6E;&#x4F1A;&#x8986;&#x76D6; ~/.gitconfig&#x4E2D;&#x7684;&#x540C;&#x540D;&#x53D8;&#x91CF;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x8981;&#x5728;&#x67D0;&#x4E2A;&#x7279;&#x5B9A;&#x7684;&#x9879;&#x76EE;&#x4E2D;&#x4F7F;&#x7528;&#x5176;&#x4ED6;&#x540D;&#x5B57;&#x6216;&#x8005;&#x90AE;&#x4EF6;&#x5730;&#x5740;&#xFF0C;&#x5148;&#x8FDB;&#x5230;&#x9879;&#x76EE;&#x4E0A;&#x4E0B;&#xFF0C;&#x7136;&#x540E;&#x53EA;&#x8981;&#x53BB;&#x6389;
+--global &#x9009;&#x9879;&#x91CD;&#x65B0;&#x914D;&#x7F6E;&#x5373;&#x53EF;&#x3002; &#x6700;&#x540E;&#x914D;&#x7F6E;&#x7684;&#x7528;&#x6237;&#x548C;&#x90AE;&#x4EF6;&#x5730;&#x5740;&#x4F1A;&#x4FDD;&#x5B58;&#x5728;&#x5F53;&#x524D;&#x9879;&#x76EE;&#x7684;
+.git/config &#x6587;&#x4EF6;&#x91CC;&#x3002;</p>
+<p>&#x4F8B;&#xFF1A;&#x4FEE;&#x6539;&#x67D0;&#x4E2A;git&#x9879;&#x76EE;&#x4E0B;&#x7684;&#x73AF;&#x5883;&#x53D8;&#x91CF;</p>
+<p>[root\@lewis63 ~]# cd cloudmaster/</p>
+<p>[root\@lewis63 cloudmaster]# git config user.name &quot;liukai&quot;</p>
+<p>[root\@lewis63 cloudmaster]# git config user.email &quot;xiaokai0312\@163.com&quot;</p>
+<p>[root\@lewis63 cloudmaster]# cat ./.git/config</p>
+<p>[core]</p>
+<p>repositoryformatversion = 0</p>
+<p>filemode = true</p>
+<p>bare = false</p>
+<p>logallrefupdates = true</p>
+<p>[remote &quot;origin&quot;]</p>
+<p>url = <a href="http://192.168.1.63/root/cloudmaster.git" target="_blank">http://192.168.1.63/root/cloudmaster.git</a></p>
+<p>fetch = +refs/heads/*:refs/remotes/origin/*</p>
+<p>[branch &quot;master&quot;]</p>
+<p>remote = origin</p>
+<p>merge = refs/heads/master</p>
+<p>[user]</p>
+<p>name = liukai</p>
+<p>email = <a href="mailto:xiaokai0312@163.com" target="_blank">xiaokai0312@163.com</a></p>
+<h3 id="9git&#x5E38;&#x7528;&#x547D;&#x4EE4;"><a name="9git&#x5E38;&#x7528;&#x547D;&#x4EE4;" class="anchor-navigation-ex-anchor" href="#9git&#x5E38;&#x7528;&#x547D;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a>9.Git&#x5E38;&#x7528;&#x547D;&#x4EE4;</h3>
+<p>git config --global user.name &#x201C;name&#x201C; #&#x8BBE;&#x7F6E;&#x5168;&#x5C40;&#x7528;&#x6237;&#x540D;</p>
+<p>git config --global user.email mail #&#x8BBE;&#x7F6E;&#x5168;&#x5C40;&#x90AE;&#x7BB1;</p>
+<p>git config --global --list #&#x5217;&#x51FA;&#x7528;&#x6237;&#x5168;&#x5C40;&#x8BBE;&#x7F6E;</p>
+<p>git add index.html #&#x6DFB;&#x52A0;&#x6587;&#x4EF6;&#x5230;&#x6682;&#x5B58;&#x533A;</p>
+<p>git commit -m &#x201C;&#x63CF;&#x8FF0;&#x5185;&#x5BB9;&#x201C; #&#x63D0;&#x4EA4;&#x6587;&#x4EF6;&#x5230;&#x5DE5;&#x4F5C;&#x533A;</p>
+<p>git status #&#x67E5;&#x770B;&#x5DE5;&#x4F5C;&#x533A;&#x7684;&#x72B6;&#x6001;</p>
+<p>git push #&#x63D0;&#x4EA4;&#x4EE3;&#x7801;&#x5230;git&#x670D;&#x52A1;&#x5668;&#x4E0A;</p>
+<p>git pull #&#x83B7;&#x53D6;&#x4EE3;&#x7801;&#x5230;&#x672C;&#x5730;</p>
+<p>git log #&#x67E5;&#x770B;&#x64CD;&#x4F5C;&#x65E5;&#x5FD7;</p>
+<p>vim .gitignore #&#x5B9A;&#x4E49;&#x5FFD;&#x7565;&#x6587;&#x4EF6;</p>
+<p>git reset --hard HEAD\^ #git&#x7248;&#x672C;&#x56DE;&#x6EDA;&#xFF0C;
+HEAD&#x4E3A;&#x5F53;&#x524D;&#x7248;&#x672C;&#xFF0C;&#x52A0;&#x4E00;&#x4E2A;\^&#x4E3A;&#x4E0A;&#x4E00;&#x4E2A;&#xFF0C;\^\^&#x4E3A;&#x4E0A;&#x4E0A;&#x4E00;&#x4E2A;&#x7248;&#x672C;</p>
+<p>git reflog # #&#x83B7;&#x53D6;&#x6BCF;&#x6B21;&#x63D0;&#x4EA4;&#x7684;ID&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;--hard&#x6839;&#x636E;&#x63D0;&#x4EA4;&#x7684;ID&#x8FDB;&#x884C;&#x7248;&#x672C;&#x56DE;&#x9000;</p>
+<p>git reset --hard 5ae4b06 #&#x56DE;&#x9000;&#x5230;&#x6307;&#x5B9A;id&#x7684;&#x7248;&#x672C;</p>
+<p># git branch #&#x67E5;&#x770B;&#x5F53;&#x524D;&#x6240;&#x5904;&#x7684;&#x5206;&#x652F;</p>
+<p>git checkout -- file #&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x66F4;&#x65B0;&#x67D0;&#x4E2A;&#x90A3;&#x6587;&#x4EF6;&#x8986;&#x76D6;&#x672C;&#x5730;&#x7684;&#x6587;&#x4EF6;</p>
+<p>&#x4F8B;&#xFF1A;&#x628A;&#x4FEE;&#x6539;&#x8FC7;&#x7684;index.html&#x6587;&#x4EF6;&#x66F4;&#x65B0;&#x4E3B;&#x7248;&#x672C;&#x4E2D;</p>
+<p>[root\@lewis63 cloudmaster]# echo &quot;hello,world&quot; &gt; index.html</p>
+<p>[root\@lewis63 cloudmaster]# git add index.html</p>
+<p>[root\@lewis63 cloudmaster]# git commit -m &quot;edit index&quot; <strong>#&#x63D0;&#x4EA4;&#x5230;&#x6682;&#x5B58;&#x533A;&#x4E2D;</strong></p>
+<p>[master de8e096] edit index</p>
+<p>1 file changed, 1 insertion(+), 1 deletion(-)</p>
+<p>[root\@lewis63 cloudmaster]# git push -u origin master <strong>#&#x4E0A;&#x4F20;&#x5230;&#x4E3B;&#x5E72;master&#x4E0A;</strong></p>
+<p>Username for &apos;<a href="http://192.168.1.63" target="_blank">http://192.168.1.63</a>&apos;: liukai</p>
+<p>Password for &apos;<a href="http://liukai\@192.168.1.63" target="_blank">http://liukai\@192.168.1.63</a>&apos;:</p>
+<p>remote: GitLab: You are not allowed to push code to protected branches on this
+project.</p>
+<p>&#x63D0;&#x793A;&#x6CA1;&#x6709;&#x6743;&#x9650;&#x63D0;&#x4EA4;&#x4EE3;&#x7801;&#x5230;master</p>
+<p>&#x89E3;&#x51B3;&#xFF1A;</p>
+<p>&#x7248;&#x672C;&#x5E93;-&#x300B;&#x4FDD;&#x62A4;&#x5206;&#x652F;-&#x300B;&#x5141;&#x8BB8;push&#x9009;&#x62E9;&#x5F00;&#x53D1;</p>
+<p><img src="media/80bc6014d3d69e78f311271c7111f238.png" alt=""></p>
+<h3 id="10&#x5DE5;&#x4F5C;&#x533A;&#x548C;&#x6682;&#x5B58;&#x533A;&#x53CA;&#x5206;&#x652F;"><a name="10&#x5DE5;&#x4F5C;&#x533A;&#x548C;&#x6682;&#x5B58;&#x533A;&#x53CA;&#x5206;&#x652F;" class="anchor-navigation-ex-anchor" href="#10&#x5DE5;&#x4F5C;&#x533A;&#x548C;&#x6682;&#x5B58;&#x533A;&#x53CA;&#x5206;&#x652F;"><i class="fa fa-link" aria-hidden="true"></i></a>10.&#x5DE5;&#x4F5C;&#x533A;&#x548C;&#x6682;&#x5B58;&#x533A;&#x53CA;&#x5206;&#x652F;</h3>
+<p>1&#x3001;&#x5DE5;&#x4F5C;&#x533A;&#x5C31;&#x662F;&#x7F16;&#x8F91;&#x6587;&#x4EF6;&#x7684;&#x76EE;&#x5F55;&#x533A;&#x57DF;&#xFF0C;&#x9700;&#x8981;&#x5C06;&#x5DE5;&#x4F5C;&#x533A;&#x7684;&#x4FEE;&#x6539;&#x597D;&#x7684;&#x6587;&#x4EF6;add&#x5230;&#x6682;&#x5B58;&#x533A;&#x624D;&#x80FD;&#x63D0;&#x4EA4;&#x5230;git&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5728;&#x5DE5;&#x4F5C;&#x533A;&#x6709;&#x591A;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x5C06;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x6587;&#x4EF6;&#x6DFB;&#x52A0;&#x81F3;&#x6682;&#x5B58;&#x533A;&#xFF0C;&#x518D;&#x63D0;&#x4EA4;&#x5230;git&#x670D;&#x52A1;&#x5668;&#x5373;&#x53EF;&#x3002;</p>
+<p>2&#x3001;&#x5728;&#x670D;&#x52A1;&#x5668;&#x521B;&#x5EFA;&#x5206;&#x652F;</p>
+<p>[root\@lewis63 cloudmaster]# git branch bbs <strong>#&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5206;&#x652F;</strong></p>
+<p>[root\@lewis63 cloudmaster]# git checkout bbs <strong>#&#x5207;&#x6362;&#x5230;&#x5206;&#x652F;bbs</strong></p>
+<p>Switched to branch &apos;bbs&apos;</p>
+<p>[root\@lewis63 cloudmaster]# git branch <strong>#&#x67E5;&#x770B;&#x5F53;&#x524D;&#x6240;&#x5904;&#x7684;&#x5206;&#x652F;</strong></p>
+<p>* bbs</p>
+<p>master</p>
+<p>[root\@lewis63 cloudmaster]# echo &quot;bbs branch&quot; &gt; a.txt
+<strong>#&#x968F;&#x610F;&#x5728;&#x91CC;&#x9762;&#x5199;&#x4E00;&#x4E9B;&#x5185;&#x5BB9;</strong></p>
+<p>[root\@lewis63 cloudmaster]# git add a.txt</p>
+<p>[root\@lewis63 cloudmaster]# git commit -m &quot;&#x63D0;&#x4EA4;&#x5230;bbs&#x5206;&#x652F;&quot; <strong>#&#x63D0;&#x4EA4;&#x5230;&#x6682;&#x5B58;&#x533A;&#x4E2D;</strong></p>
+<p>[bbs 0ee53ea] &#x63D0;&#x4EA4;&#x5230;bbs&#x5206;&#x652F;</p>
+<p>1 file changed, 1 insertion(+)</p>
+<p>create mode 100644 a.txt</p>
+<p>[root\@lewis63 cloudmaster]# git push -u origin bbs <strong>#&#x4E0A;&#x4F20;&#x5230;&#x5206;&#x652F;bbs&#x5206;&#x652F;&#x4E0A;</strong></p>
+<h3 id="11&#x90E8;&#x7F72;&#x5BC6;&#x94A5;"><a name="11&#x90E8;&#x7F72;&#x5BC6;&#x94A5;" class="anchor-navigation-ex-anchor" href="#11&#x90E8;&#x7F72;&#x5BC6;&#x94A5;"><i class="fa fa-link" aria-hidden="true"></i></a>11.&#x90E8;&#x7F72;&#x5BC6;&#x94A5;</h3>
+<p>&#x9879;&#x76EE;-&#x300B;&#x8BBE;&#x7F6E;-&#x300B;&#x7248;&#x672C;&#x5E93;</p>
+<p><img src="media/5f5e8c5f4ce456f40ec4b07b542bb801.png" alt=""></p>
+<p>[root\@lewis63 ~]# ssh-keygen #&#x751F;&#x6210;&#x516C;&#x94A5;</p>
+<p>[root\@lewis63 ~]# cat .ssh/id_rsa.pub</p>
+<p>ssh-rsa
+AAAAB3NzaC1yc2EAAAADAQABAAABAQDjpJQYgBrwR2WpaR4sr9ENrmrTrSurVcgA0NVuqLHm4HOLrRX9yp+YZGz/65E8vGDRnlgSmUq9CzioCS/dmAHLy7vEZGDh4kz2EbR22p2VfsPJ08bBTdW3ZZ43flqFj/MN3+mnzUWt1PL2CG/VU+eukr5zAjKfXlI3ZQnfG8sp8VxK57+IjEVg4mEOGEbrZrvQjGxuUvf2m8ffgGyWGvzPlc/w5yMG2LtOYXoqPfZ2hWBq8c2ISEhLmDRGUA3fxMUKR62MeYAMa4eVwxeK5dYLVcZBQqLwzLmCD3l/33GNfyPZKvtocor66ma1Qg/KkUbz2CRtMJgrO0l5e2ZnqUT5
+root\@lewis63</p>
+<p>&#x628A;&#x5BC6;&#x94A5;&#x7C98;&#x8D34;&#x5230;gitlab&#x5BC6;&#x94A5;&#xFF0C;&#x5141;&#x8BB8;&#x63A8;&#x9001;&#xFF0C;&#x6DFB;&#x52A0;&#x5BC6;&#x94A5;</p>
+<p>&#x90E8;&#x7F72;key&#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x4E0D;&#x7528;&#x7528;&#x6237;&#x5BC6;&#x7801;&#x76F4;&#x63A5;&#x83B7;&#x53D6;&#x4EE3;&#x7801;</p>
+<h3 id="12&#x5173;&#x4E8E;git-pushdefault&#x8BBE;&#x7F6E;&#x7684;&#x77E5;&#x8BC6;&#x3002;"><a name="12&#x5173;&#x4E8E;git-pushdefault&#x8BBE;&#x7F6E;&#x7684;&#x77E5;&#x8BC6;&#x3002;" class="anchor-navigation-ex-anchor" href="#12&#x5173;&#x4E8E;git-pushdefault&#x8BBE;&#x7F6E;&#x7684;&#x77E5;&#x8BC6;&#x3002;"><i class="fa fa-link" aria-hidden="true"></i></a>12.&#x5173;&#x4E8E;git push.default&#x8BBE;&#x7F6E;&#x7684;&#x77E5;&#x8BC6;&#x3002;</h3>
+<p>&#x9ED8;&#x8BA4;&#x914D;&#x7F6E;&#x4E0B;&#xFF0C;&#x5F53;&#x4F7F;&#x7528;git
+push&#x547D;&#x4EE4;&#x800C;&#x6CA1;&#x6709;&#x660E;&#x786E;&#x7684;&#x6307;&#x540D;&#x672C;&#x5730;&#x5206;&#x652F;&#x548C;&#x8FDC;&#x7A0B;&#x53C2;&#x8003;&#x5206;&#x652F;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4F1A;&#x6709;&#x5982;&#x4E0A;&#x7684;&#x63D0;&#x793A;&#x3002;&#x5982;&#x679C;git
+push&#x547D;&#x4EE4;&#x6CA1;&#x6709;&#x660E;&#x786E;&#x6307;&#x5B9A;&#x5F15;&#x7528;&#x89C4;&#x683C;(refspec),&#x4E5F;&#x5C31;&#x662F;&#x6CA1;&#x6709;&#x6307;&#x5B9A;&#x63A8;&#x9001;&#x7684;&#x6E90;&#x5206;&#x652F;&#x548C;&#x76EE;&#x6807;&#x5206;&#x652F;&#xFF0C;&#x90A3;&#x4E48;git&#x4F1A;&#x91C7;&#x7528;push.default&#x5B9A;&#x4E49;&#x7684;&#x52A8;&#x4F5C;&#x3002;&#x4E0D;&#x540C;&#x7684;&#x503C;&#x9002;&#x7528;&#x4E8E;&#x4E0D;&#x540C;&#x7684;&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;&#x6A21;&#x5F0F;&#x3002;</p>
+<p>&#x663E;&#x800C;&#x6613;&#x89C1;&#xFF0C;&#x4E3B;&#x8981;&#x662F;&#x56E0;&#x4E3A;&#x4E4B;&#x524D;&#x6CA1;&#x6709;&#x8FDB;&#x884C;&#x8BBE;&#x7F6E;&#x5F15;&#x7528;&#x89C4;&#x683C;&#x624D;&#x51FA;&#x73B0;&#x7684;&#x8FD9;&#x79CD;&#x95EE;&#x9898;&#xFF0C;&#x73B0;&#x5728;&#x6211;&#x628A;push.default&#x7684;&#x53EF;&#x7528;&#x503C;&#x4E0E;&#x914D;&#x7F6E;&#x65B9;&#x6CD5;&#x8D34;&#x5728;&#x4E0B;&#x9762;&#x3002;push.default&#x53EF;&#x7528;&#x7684;&#x503C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>1.nothing
+&#x4E0D;&#x63A8;&#x9001;&#x4EFB;&#x4F55;&#x4E1C;&#x897F;&#x5E76;&#x6709;&#x9519;&#x8BEF;&#x63D0;&#x793A;&#xFF0C;&#x9664;&#x975E;&#x660E;&#x786E;&#x6307;&#x5B9A;&#x5206;&#x652F;&#x5F15;&#x7528;&#x89C4;&#x683C;&#x3002;&#x5F3A;&#x5236;&#x4F7F;&#x7528;&#x5206;&#x652F;&#x5F15;&#x7528;&#x89C4;&#x683C;&#x6765;&#x907F;&#x514D;&#x53EF;&#x80FD;&#x6F5C;&#x5728;&#x7684;&#x9519;&#x8BEF;&#x3002;</p>
+<p>2.current &#x63A8;&#x9001;&#x5F53;&#x524D;&#x5206;&#x652F;&#x5230;&#x63A5;&#x6536;&#x7AEF;&#x540D;&#x5B57;&#x76F8;&#x540C;&#x7684;&#x5206;&#x652F;&#x3002;</p>
+<p>3.upstream
+&#x63A8;&#x9001;&#x5F53;&#x524D;&#x5206;&#x652F;&#x5230;&#x4E0A;&#x6E38;\@{upstream}&#x3002;&#x8FD9;&#x4E2A;&#x6A21;&#x5F0F;&#x53EA;&#x9002;&#x7528;&#x4E8E;&#x63A8;&#x9001;&#x5230;&#x4E0E;&#x62C9;&#x53D6;&#x6570;&#x636E;&#x76F8;&#x540C;&#x7684;&#x4ED3;&#x5E93;&#xFF0C;&#x6BD4;&#x5982;&#x4E2D;&#x592E;&#x5DE5;&#x4F5C;&#x4ED3;&#x5E93;&#x6D41;&#x7A0B;&#x6A21;&#x5F0F;&#x3002;</p>
+<p>4.simple
+&#x5728;&#x4E2D;&#x592E;&#x4ED3;&#x5E93;&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;&#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x62D2;&#x7EDD;&#x63A8;&#x9001;&#x5230;&#x4E0A;&#x6E38;&#x4E0E;&#x672C;&#x5730;&#x5206;&#x652F;&#x540D;&#x5B57;&#x4E0D;&#x540C;&#x7684;&#x5206;&#x652F;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x53EA;&#x6709;&#x672C;&#x5730;&#x5206;&#x652F;&#x540D;&#x548C;&#x4E0A;&#x6E38;&#x5206;&#x652F;&#x540D;&#x5B57;&#x4E00;&#x81F4;&#x624D;&#x53EF;&#x4EE5;&#x63A8;&#x9001;&#xFF0C;
+&#x5C31;&#x7B97;&#x662F;&#x63A8;&#x9001;&#x5230;&#x4E0D;&#x662F;&#x62C9;&#x53D6;&#x6570;&#x636E;&#x7684;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#xFF0C;&#x53EA;&#x8981;&#x540D;&#x5B57;&#x76F8;&#x540C;&#x4E5F;&#x662F;&#x53EF;&#x4EE5;&#x7684;&#x3002;&#x5728;GIT
+2.0&#x4E2D;&#xFF0C;simple&#x5C06;&#x4F1A;&#x662F;push.default&#x7684;&#x9ED8;&#x8BA4;&#x503C;&#x3002; simple&#x53EA;&#x4F1A;&#x63A8;&#x9001;&#x672C;&#x5730;&#x5F53;&#x524D;&#x5206;&#x652F;&#x3002;</p>
+<p>5.matching &#x63A8;&#x9001;&#x672C;&#x5730;&#x4ED3;&#x5E93;&#x548C;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#x6240;&#x6709;&#x540D;&#x5B57;&#x76F8;&#x540C;&#x7684;&#x5206;&#x652F;&#x3002;&#x8FD9;&#x662F;git&#x5F53;&#x524D;&#x7248;&#x672C;&#x7684;&#x7F3A;&#x7701;&#x503C;&#x3002;</p>
+<p>&#x914D;&#x7F6E;push.default&#x7684;&#x547D;&#x4EE4;&#x5982;&#x4E0B;&#xFF1A; git config --global push.default simple</p>
+<h2 id="&#x56DB;&#xFF0E;&#x642D;&#x5EFA;jenkins&#x5B9E;&#x73B0;&#x6301;&#x7EED;&#x96C6;&#x6210;"><a name="&#x56DB;&#xFF0E;&#x642D;&#x5EFA;jenkins&#x5B9E;&#x73B0;&#x6301;&#x7EED;&#x96C6;&#x6210;" class="anchor-navigation-ex-anchor" href="#&#x56DB;&#xFF0E;&#x642D;&#x5EFA;jenkins&#x5B9E;&#x73B0;&#x6301;&#x7EED;&#x96C6;&#x6210;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x56DB;&#xFF0E;&#x642D;&#x5EFA;Jenkins&#x5B9E;&#x73B0;&#x6301;&#x7EED;&#x96C6;&#x6210;</h2>
+<h3 id="1&#x6E90;&#x7801;&#x5B89;&#x88C5;jdk18"><a name="1&#x6E90;&#x7801;&#x5B89;&#x88C5;jdk18" class="anchor-navigation-ex-anchor" href="#1&#x6E90;&#x7801;&#x5B89;&#x88C5;jdk18"><i class="fa fa-link" aria-hidden="true"></i></a>1.&#x6E90;&#x7801;&#x5B89;&#x88C5;JDK1.8</h3>
+<p>Jenkins&#x662F;Java&#x7F16;&#x5199;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x5148;&#x5B89;&#x88C5;JDK&#xFF0C;&#x8FD9;&#x91CC;&#x91C7;&#x7528;yum&#x5B89;&#x88C5;&#xFF0C;&#x5982;&#x679C;&#x5BF9;&#x7248;&#x672C;&#x6709;&#x9700;&#x6C42;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5728;Oracle&#x5B98;&#x7F51;&#x4E0B;&#x8F7D;JDK&#x3002;</p>
+<p>[root\@lewis63 ~]# tar -zxf jdk-8u161-linux-x64.tar.gz -C /usr/local/</p>
+<p>[root\@lewis63 ~]# cd /usr/local/</p>
+<p>[root\@lewis63 local]# mv jdk1.8.0_161 jdk</p>
+<p>&#x914D;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;</p>
+<p>[root\@lewis63 local]# vim /etc/profile #&#x5728;&#x672B;&#x5C3E;&#x52A0;&#x5165;</p>
+<p>export JAVA_HOME=/usr/local/jdk</p>
+<p>export JRE_HOME=/usr/local/jdk/jre</p>
+<p>export
+CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib</p>
+<p>export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH</p>
+<p>[root\@lewis63 local]# source /etc/profile #&#x4F7F;&#x7ACB;&#x5373;&#x751F;&#x6548;</p>
+<p>[root\@lewis63 local]# java -version</p>
+<p>java version &quot;1.8.0_161&quot;</p>
+<p>Java(TM) SE Runtime Environment (build 1.8.0_161-b12)</p>
+<p>Java HotSpot(TM) 64-Bit Server VM (build 25.161-b12, mixed mode)</p>
+<h3 id="2&#x5B89;&#x88C5;jenkins"><a name="2&#x5B89;&#x88C5;jenkins" class="anchor-navigation-ex-anchor" href="#2&#x5B89;&#x88C5;jenkins"><i class="fa fa-link" aria-hidden="true"></i></a>2.&#x5B89;&#x88C5;jenkins</h3>
+<p>[root\@lewis63 ~]# wget <a href="http://pkg.jenkins.io/redhat/jenkins.repo%20-O%20/etc/yum.repos.d/jenkins.repo" target="_blank">http://pkg.jenkins.io/redhat/jenkins.repo -O
+/etc/yum.repos.d/jenkins.repo</a></p>
+<p>[root\@lewis63 yum.repos.d]# rpm --import
+<a href="http://pkg.jenkins.io/redhat/jenkins.io.key" target="_blank">http://pkg.jenkins.io/redhat/jenkins.io.key</a></p>
+<p>[root\@lewis63 yum.repos.d]# yum install -y jenkins
+#&#x9ED8;&#x8BA4;&#x5B89;&#x88C5;&#x6700;&#x65B0;&#x7248;&#x672C;&#x3002;&#x6216;&#x8005;&#x76F4;&#x63A5;&#x5B89;&#x88C5;jenkins-2.93-1.1.noarch.rpm&#x5305;</p>
+<p><strong>&#x6CE8;&#xFF1A;&#x65B0;&#x7248;GitLab&#x7684;&#x670D;&#x52A1;&#x7AEF;&#x53E3;&#x4E3A;8080&#xFF0C;&#x4E3A;&#x4E86;&#x4E0D;&#x548C;GitLab&#x7684;&#x670D;&#x52A1;&#x7AEF;&#x53E3;&#x76F8;&#x51B2;&#x7A81;&#xFF0C;&#x4FEE;&#x6539;Jenkins&#x7684;&#x9ED8;&#x8BA4;&#x7AEF;&#x53E3;8080&#x4E3A;198</strong></p>
+<p>[root\@lewis63 ~]# vim /etc/sysconfig/jenkins</p>
+<p>&#x6539;&#xFF1A;56 JENKINS_PORT=&quot;8080&quot;</p>
+<p>&#x4E3A;&#xFF1A;56 JENKINS_PORT=&quot;1198&quot;</p>
+<p>10 JENKINS_HOME=&quot;/var/lib/jenkins&quot;
+#&#x6570;&#x636E;&#x76EE;&#x5F55;&#xFF0C;&#x5EFA;&#x8BAE;&#x7528;&#x56FA;&#x6001;&#x78C1;&#x76D8;&#x6765;&#x5B58;&#x6570;&#x636E;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x5B9A;&#x4E49;</p>
+<p>[root\@lewis63 ~]# /etc/init.d/jenkins start</p>
+<p>&#x62A5;&#x9519;1&#xFF1A;</p>
+<p>systemctl status jenkins.service</p>
+<p><strong>Starting Jenkins bash: /usr/bin/java: No such file or directory</strong></p>
+<p><strong>&#x53D1;&#x73B0;&#x662F;&#x627E;&#x4E0D;&#x5230;jdk&#xFF0C;&#x4FEE;&#x6539;&#x6587;&#x4EF6;</strong></p>
+<p><strong>&#x89E3;&#x51B3;&#xFF1A;</strong></p>
+<p><strong>ln -s /usr/local/jdk/bin/java /usr/bin/java #&#x505A;&#x94FE;&#x63A5;</strong></p>
+<p><strong>&#x62A5;&#x9519;2&#xFF1A;</strong></p>
+<p><strong>&#x542F;&#x52A8;jenkins&#x53D1;&#x73B0;&#x7AEF;&#x53E3;&#x6CA1;&#x6709;&#x8D77;&#x6765;&#xFF0C;&#x67E5;&#x770B;jenkins&#x65E5;&#x5FD7;</strong></p>
+<p><strong>tail /var/log/jenkins/jenkins.log &#x6743;&#x9650;&#x4E0D;&#x591F;</strong></p>
+<p><strong>jenkins&#x9ED8;&#x8BA4;&#x662F;&#x4EE5;jenkins&#x7528;&#x6237;&#x8FD0;&#x884C;&#xFF0C;&#x4FEE;&#x6539;jenkins&#x7528;&#x6237;&#x4E3A;root</strong></p>
+<p><strong>[root\@lewis63 ~]# vim /etc/sysconfig/jenkins</strong></p>
+<p><strong>JENKINS_USER=&quot;root&quot;</strong></p>
+<p>&#x91CD;&#x65B0;&#x542F;&#x52A8;&#xFF1A;</p>
+<p>[root\@lewis63 ~]# /etc/init.d/jenkins start</p>
+<p>[root\@lewis63 bin]# netstat -anput | grep 1198</p>
+<p>tcp6 0 0 :::1198 :::* LISTEN 24112/java</p>
+<p>[root\@lewis63 ~]# chkconfig jenkins on</p>
+<p>&#x6D4F;&#x89C8;&#x5668;&#x8BBF;&#x95EE;<a href="http://192.168.1.63:1198" target="_blank">http://192.168.1.63:1198</a></p>
+<p>&#x5B89;&#x88C5;&#x63A8;&#x8350;&#x7684;&#x63D2;&#x4EF6;</p>
+<p><img src="media/c3d17caa55fe4a55fe74acabf7bcf5ad.png" alt=""></p>
+<h3 id="3&#x624B;&#x52A8;&#x5B89;&#x88C5;jenkins&#x63D2;&#x4EF6;"><a name="3&#x624B;&#x52A8;&#x5B89;&#x88C5;jenkins&#x63D2;&#x4EF6;" class="anchor-navigation-ex-anchor" href="#3&#x624B;&#x52A8;&#x5B89;&#x88C5;jenkins&#x63D2;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>3.&#x624B;&#x52A8;&#x5B89;&#x88C5;jenkins&#x63D2;&#x4EF6;</h3>
+<p>&#x5982;&#x679C;&#x5728;&#x4E0B;&#x7EBF;&#x5B89;&#x88C5;&#x63D2;&#x4EF6;&#x5931;&#x8D25;&#x4E86;&#xFF0C;&#x6216;&#x662F;&#x65E0;&#x7F51;&#x73AF;&#x5883;&#x4E0B;&#x60F3;&#x5B89;&#x88C5;&#x63D2;&#x4EF6;&#xFF0C;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x624B;&#x52A8;&#x5B89;&#x88C5;</p>
+<p>&#x5B89;&#x88C5;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x767B;&#x5F55;&#x7CFB;&#x7EDF;&#xFF0C;&#x9009;&#x62E9;&#xFF1A;</p>
+<p>&#x7CFB;&#x7EDF;&#x7BA1;&#x7406;-&gt;&#x63D2;&#x4EF6;&#x7BA1;&#x7406;-&gt;&#x9AD8;&#x7EA7;</p>
+<p><img src="media/e89ee3e7901875c0f32f3126700f7459.png" alt=""></p>
+<p><img src="media/5d6a938b50760fd522304e7d42fbef90.png" alt=""></p>
+<p>&#x63D2;&#x4EF6;&#x4E0B;&#x8F7D;&#x5730;&#x5740;&#xFF1A;</p>
+<p><a href="http://updates.jenkins-ci.org/download/plugins/" target="_blank">http://updates.jenkins-ci.org/download/plugins/</a>
+#&#x5728;&#x6709;&#x7F51;&#x7684;&#x73AF;&#x5883;&#x4E0B;&#xFF0C;&#x628A;&#x81EA;&#x5DF1;&#x9700;&#x8981;&#x7684;&#x63D2;&#x4EF6;&#x4E0B;&#x8F7D;&#x597D;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x4ECE;&#x672C;&#x5730;&#x4E0A;&#x4F20;&#x3002;</p>
+<p>&#x65B9;&#x6CD5;2&#xFF1A;
+&#x4E5F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x628A;&#x4E00;&#x53F0;&#x5B89;&#x88C5;&#x597D;jenkins&#x63D2;&#x4EF6;&#x670D;&#x52A1;&#x5668;&#x7684;/var/lib/jenkins/plugins&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x6587;&#x4EF6;&#x590D;&#x5236;&#x5230;&#x65B0;&#x7684;jenkins&#x4E2D;&#x3002;</p>
+<p>&#x628A;&#x51C6;&#x5907;&#x597D;&#x7684;&#x63D2;&#x4EF6;&#x89E3;&#x538B;&#x4E00;&#x4E0B;&#xFF1A;</p>
+<p>[root\@lewis63 jenkins]# tar czvf plugins.tar.gz plugins/</p>
+<p>#cd /var/lib/jenkins/</p>
+<p>#rm -rf /var/lib/jenkins/plugins</p>
+<p>#tar -zxvf plugins.tar.gz #&#x4E0A;&#x4F20;plugins.tar.gz&#x5230;linux&#x7CFB;&#x7EDF;&#x4E0A;&#xFF0C;&#x89E3;&#x538B;&#x7F29;</p>
+<p>#chown jenkins.jenkins ./* -R</p>
+<p>#/etc/init.d/jenkins start</p>
+<p>&#x6CE8;&#xFF1A;&#x8BB0;&#x5F97;&#x91CD;&#x542F;jenkins&#xFF0C;&#x8FD9;&#x4E2A;&#x975E;&#x5E38;&#x91CD;&#x8981;&#xFF0C;&#x56E0;&#x4E3A;&#x4E0D;&#x91CD;&#x542F;&#xFF0C;&#x63D2;&#x4EF6;&#x4E0D;&#x4F1A;&#x751F;&#x6548;</p>
+<p>&#x5230;&#x6B64;jenkins&#x5B89;&#x88C5;&#x6210;&#x529F;&#x3002;</p>
+<p>&#x767B;&#x5F55;gitlab <a href="http://192.168.1.63/" target="_blank">http://192.168.1.63/</a> &#x7528;&#x6237;&#x540D;&#xFF1A; root</p>
+<p>&#x767B;&#x5F55;jenkins <a href="http://192.168.1.63:198/" target="_blank">http://192.168.1.63:198/</a> &#x7528;&#x6237;&#x540D;&#xFF1A; admin </p>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9;lewis 2018 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2018-09-18 13:32:08
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="MySQL高可用之MHA.html" class="navigation navigation-prev " aria-label="Previous page: MySQL高可用之MHA">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../python/" class="navigation navigation-next " aria-label="Next page: Python">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"GitLab与Jenkins结合构建持续集成(CI)环境","level":"1.2.9","depth":2,"next":{"title":"Python","level":"1.3","depth":1,"path":"python/README.md","ref":"python/README.md","articles":[{"title":"第一节","level":"1.3.1","depth":2,"path":"python/example1.md","ref":"python/example1.md","articles":[]}]},"previous":{"title":"MySQL高可用之MHA","level":"1.2.8","depth":2,"path":"linux/MySQL高可用之MHA.md","ref":"linux/MySQL高可用之MHA.md","articles":[]},"dir":"ltr"},"config":{"plugins":["favicon","toc2","disqus","anchors@^0.7.1","include-codeblock@^3.0.2","splitter@^0.0.8","tbfed-pagefooter@^0.0.1","expandable-chapters-small@^0.1.7","anchor-navigation-ex@0.1.8","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright ©lewis 2018","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"livereload":{},"splitter":{},"search":{},"toc2":{"addClass":true,"className":"toc"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"isRewritePageTitle":false,"tocLevel1Icon":"fa fa-hand-o-right","tocLevel2Icon":"fa fa-hand-o-right","tocLevel3Icon":"fa fa-hand-o-right"},"favicon":{"shortcut":"/images/favicon.ico","bookmark":"/images/favicon.ico"},"expandable-chapters-small":{},"include-codeblock":{"check":false,"edit":true,"fixlang":false,"lang":"","template":"ace","theme":"chrome","unindent":true},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{}},"theme":"default","author":"Lewis","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"黎明的奔跑","language":"zh-hans","output.name":"site","links":{"sidebar":{"Home":"https://www.shareknowledge.top"}},"gitbook":"3.2.3","description":"求知若渴,虚心若愚"},"file":{"path":"linux/GitLab与Jenkins结合构建持续集成环境.md","mtime":"2018-09-18T05:32:08.577Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-25T12:29:33.884Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-toc2/toc2.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

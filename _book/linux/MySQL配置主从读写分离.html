@@ -1,0 +1,777 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>MySQL配置主从读写分离 · 黎明的奔跑</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Lewis">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-toc2/toc2.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="MySQL高可用之MHA.html" />
+    
+    
+    <link rel="prev" href="zabbix源码安装及配置.html" />
+    
+
+    
+        <link rel="shortcut icon" href='../images/favicon.ico' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../images/favicon.ico' type="image/x-icon">
+    
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://www.shareknowledge.top" target="_blank" class="custom-link">Home</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                        <b>1.1.</b>
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                        <b>1.2.</b>
+                    
+                    Linux运维
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="redis.html">
+            
+                <a href="redis.html">
+            
+                    
+                        <b>1.2.1.</b>
+                    
+                    搭建redis
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="Tomcat环境搭建.html">
+            
+                <a href="Tomcat环境搭建.html">
+            
+                    
+                        <b>1.2.2.</b>
+                    
+                    Tomcat环境搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="KVM虚拟化.html">
+            
+                <a href="KVM虚拟化.html">
+            
+                    
+                        <b>1.2.3.</b>
+                    
+                    KVM虚拟化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="Git使用.html">
+            
+                <a href="Git使用.html">
+            
+                    
+                        <b>1.2.4.</b>
+                    
+                    Git使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="Nagios监控.html">
+            
+                <a href="Nagios监控.html">
+            
+                    
+                        <b>1.2.5.</b>
+                    
+                    Nagios监控
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="zabbix源码安装及配置.html">
+            
+                <a href="zabbix源码安装及配置.html">
+            
+                    
+                        <b>1.2.6.</b>
+                    
+                    zabbix源码安装及配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.7" data-path="MySQL配置主从读写分离.html">
+            
+                <a href="MySQL配置主从读写分离.html">
+            
+                    
+                        <b>1.2.7.</b>
+                    
+                    MySQL配置主从读写分离
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="MySQL高可用之MHA.html">
+            
+                <a href="MySQL高可用之MHA.html">
+            
+                    
+                        <b>1.2.8.</b>
+                    
+                    MySQL高可用之MHA
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="GitLab与Jenkins结合构建持续集成环境.html">
+            
+                <a href="GitLab与Jenkins结合构建持续集成环境.html">
+            
+                    
+                        <b>1.2.9.</b>
+                    
+                    GitLab与Jenkins结合构建持续集成(CI)环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../python/">
+            
+                <a href="../python/">
+            
+                    
+                        <b>1.3.</b>
+                    
+                    Python
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../python/example1.html">
+            
+                <a href="../python/example1.html">
+            
+                    
+                        <b>1.3.1.</b>
+                    
+                    第一节
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >MySQL配置主从读写分离</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-anchor"></i><ul><li><a href="#mysql&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;-&#x8BFB;&#x5199;&#x5206;&#x79BB;">mysql&#x914D;&#x7F6E;&#x4E3B;&#x4ECE; &#x8BFB;&#x5199;&#x5206;&#x79BB;</a></li><ul><li><a href="#&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;">&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;</a></li><ul><li><a href="#1&#x914D;&#x7F6E;&#x4E3B;&#x6570;&#x636E;&#x5E93;&#x670D;&#x52A1;&#x5668;">1.&#x914D;&#x7F6E;&#x4E3B;&#x6570;&#x636E;&#x5E93;&#x670D;&#x52A1;&#x5668;</a></li><li><a href="#2&#xFF0E;&#x914D;&#x7F6E;&#x4ECE;&#x6570;&#x636E;&#x5E93;">2&#xFF0E;&#x914D;&#x7F6E;&#x4ECE;&#x6570;&#x636E;&#x5E93;</a></li><li><a href="#3&#x6392;&#x9519;&#xFF1A;">3.&#x6392;&#x9519;&#xFF1A;</a></li></ul><li><a href="#mysql&#x8BFB;&#x5199;&#x5206;&#x79BB;">mysql&#x8BFB;&#x5199;&#x5206;&#x79BB;</a></li></ul></ul></div><a href="#mysql&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;-&#x8BFB;&#x5199;&#x5206;&#x79BB;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="mysql&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;-&#x8BFB;&#x5199;&#x5206;&#x79BB;"><a name="mysql&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;-&#x8BFB;&#x5199;&#x5206;&#x79BB;" class="anchor-navigation-ex-anchor" href="#mysql&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;-&#x8BFB;&#x5199;&#x5206;&#x79BB;"><i class="fa fa-link" aria-hidden="true"></i></a>mysql&#x914D;&#x7F6E;&#x4E3B;&#x4ECE; &#x8BFB;&#x5199;&#x5206;&#x79BB;</h1>
+<h2 id="&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;"><a name="&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;" class="anchor-navigation-ex-anchor" href="#&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;</h2>
+<p><strong>&#x4E00;&#x822C;&#x6765;&#x8BF4;&#x90FD;&#x662F;&#x901A;&#x8FC7;
+&#x4E3B;&#x4ECE;&#x590D;&#x5236;&#xFF08;Master-Slave&#xFF09;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x540C;&#x6B65;&#x6570;&#x636E;&#xFF0C;&#x518D;&#x901A;&#x8FC7;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#xFF08;MySQL-Proxy/Amoeba&#xFF09;&#x6765;&#x63D0;&#x5347;&#x6570;&#x636E;&#x5E93;&#x7684;&#x5E76;&#x53D1;&#x8D1F;&#x8F7D;&#x80FD;&#x529B;
+&#x8FD9;&#x6837;&#x7684;&#x65B9;&#x6848;&#x6765;&#x8FDB;&#x884C;&#x90E8;&#x7F72;&#x4E0E;&#x5B9E;&#x65BD;&#x7684;&#x3002;</strong>Replication&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x5C06;&#x6570;&#x636E;&#x4ECE;&#x4E00;&#x53F0;&#x6570;&#x636E;&#x5E93;&#x670D;&#x52A1;&#x5668;&#xFF08;master&#xFF09;&#x590D;&#x5236;&#x5230;&#x4E00;&#x6216;&#x591A;&#x53F0;&#x6570;&#x636E;&#x5E93;&#x670D;&#x52A1;&#x5668;&#xFF08;slave&#xFF09;</p>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#x5C5E;&#x4E8E;&#x5F02;&#x6B65;&#x590D;&#x5236;&#xFF0C;&#x65E0;&#x9700;&#x7EF4;&#x6301;&#x957F;&#x8FDE;&#x63A5;</p>
+<p>&#x901A;&#x8FC7;&#x914D;&#x7F6E;&#xFF0C;&#x53EF;&#x4EE5;&#x590D;&#x5236;&#x6240;&#x6709;&#x7684;&#x5E93;&#x6216;&#x8005;&#x51E0;&#x4E2A;&#x5E93;&#xFF0C;&#x751A;&#x81F3;&#x5E93;&#x4E2D;&#x7684;&#x4E00;&#x4E9B;&#x8868;</p>
+<p>&#x662F;MySQL&#x5185;&#x5EFA;&#x7684;&#xFF0C;&#x672C;&#x8EAB;&#x81EA;&#x5E26;&#x7684;</p>
+<p>DML:SQL&#x64CD;&#x4F5C;&#x8BED;&#x53E5;&#xFF0C;update,insert&#xFF0C;delete</p>
+<p>Relay log :&#x4E2D;&#x7EE7;&#x65E5;&#x5FD7;</p>
+<p><img src="media/b218d68052871e54247819359317893b.jpg" alt="c:\\users\\shen\\appdata\\roaming\\360se6\\User Data\\temp\\0_1330439010P7lI.gif"></p>
+<p><strong>mysql&#x4E3B;&#x4ECE;&#x590D;&#x5236;&#x8FC7;&#x7A0B;(&#x4E00;&#x5B9A;&#x8981;&#x7406;&#x89E3;&#x638C;&#x63E1;,&#x9762;&#x8BD5;&#x7ECF;&#x5E38;&#x9047;&#x5230;)</strong></p>
+<p>&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;master&#x8BB0;&#x5F55;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#x3002;&#x5728;&#x6BCF;&#x4E2A;&#x4E8B;&#x52A1;&#x66F4;&#x65B0;&#x6570;&#x636E;&#x5B8C;&#x6210;&#x4E4B;&#x524D;&#xFF0C;master&#x5728;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;&#x8FD9;&#x4E9B;&#x6539;&#x53D8;&#x3002;MySQL&#x5C06;&#x4E8B;&#x52A1;&#x5199;&#x5165;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#xFF0C;&#x5373;&#x4F7F;&#x4E8B;&#x52A1;&#x4E2D;&#x7684;&#x8BED;&#x53E5;&#x90FD;&#x662F;&#x4EA4;&#x53C9;&#x6267;&#x884C;&#x7684;&#x3002;&#x5728;&#x4E8B;&#x4EF6;&#x5199;&#x5165;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#x5B8C;&#x6210;&#x540E;&#xFF0C;master&#x901A;&#x77E5;&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;&#x3002;</p>
+<p>&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;slave&#x5C06;master&#x7684;binary
+log&#x62F7;&#x8D1D;&#x5230;&#x5B83;&#x81EA;&#x5DF1;&#x7684;&#x4E2D;&#x7EE7;&#x65E5;&#x5FD7;&#x3002;&#x9996;&#x5148;&#xFF0C;slave&#x5F00;&#x59CB;&#x4E00;&#x4E2A;&#x5DE5;&#x4F5C;&#x7EBF;&#x7A0B;&#x2014;&#x2014;<strong>I/O&#x7EBF;&#x7A0B;</strong>&#x3002;I/O&#x7EBF;&#x7A0B;&#x5728;master&#x4E0A;&#x6253;&#x5F00;&#x4E00;&#x4E2A;&#x666E;&#x901A;&#x7684;&#x8FDE;&#x63A5;&#xFF0C;&#x7136;&#x540E;&#x5F00;&#x59CB;binlog
+dump process&#x3002;Binlog dump
+process&#x4ECE;master&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#x4E2D;&#x8BFB;&#x53D6;&#x4E8B;&#x4EF6;&#xFF0C;&#x5982;&#x679C;&#x5DF2;&#x7ECF;&#x6267;&#x884C;&#x5B8C;master&#x4EA7;&#x751F;&#x7684;&#x6240;&#x6709;&#x6587;&#x4EF6;&#xFF0C;&#x5B83;&#x4F1A;&#x7761;&#x7720;&#x5E76;&#x7B49;&#x5F85;master&#x4EA7;&#x751F;&#x65B0;&#x7684;&#x4E8B;&#x4EF6;&#x3002;I/O&#x7EBF;&#x7A0B;&#x5C06;&#x8FD9;&#x4E9B;&#x4E8B;&#x4EF6;&#x5199;&#x5165;&#x4E2D;&#x7EE7;&#x65E5;&#x5FD7;&#x3002;</p>
+<p>&#x7B2C;&#x4E09;&#x6B65;&#xFF1A;SQL slave
+thread&#xFF08;<strong>SQL&#x4ECE;&#x7EBF;&#x7A0B;</strong>&#xFF09;&#x5904;&#x7406;&#x8BE5;&#x8FC7;&#x7A0B;&#x7684;&#x6700;&#x540E;&#x4E00;&#x6B65;&#x3002;SQL&#x7EBF;&#x7A0B;&#x4ECE;&#x4E2D;&#x7EE7;&#x65E5;&#x5FD7;&#x8BFB;&#x53D6;&#x4E8B;&#x4EF6;&#xFF0C;&#x5E76;&#x91CD;&#x65B0;&#x6267;&#x884C;&#x5176;&#x4E2D;&#x7684;&#x4E8B;&#x4EF6;&#x800C;&#x66F4;&#x65B0;slave&#x7684;&#x6570;&#x636E;&#xFF0C;&#x4F7F;&#x5176;&#x4E0E;master&#x4E2D;&#x7684;&#x6570;&#x636E;&#x4E00;&#x81F4;&#x3002;</p>
+<p>&#x5E38;&#x89C1;&#x65B9;&#x6848;&#xFF1A;&#x4E00;&#x4E3B;&#x591A;&#x4ECE;</p>
+<p>&#x4E00;&#x822C;&#x7528;&#x6765;&#x505A;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x7684;&#xFF0C;master&#x5199;&#xFF0C;&#x5176;&#x4ED6;slave&#x8BFB;&#xFF0C;&#x8FD9;&#x79CD;&#x67B6;&#x6784;&#x6700;&#x5927;&#x95EE;&#x9898;I/O&#x538B;&#x529B;&#x96C6;&#x4E2D;</p>
+<p>&#x8BD5;&#x9A8C;&#x73AF;&#x5883;&#xFF1A;</p>
+<p>&#x4E3B;&#x670D;&#x52A1;&#x5668; 192.168.1.63 Master mysql&#x7248;&#x672C; 5.7.20</p>
+<p>&#x4ECE;&#x670D;&#x52A1;&#x5668; 192.168.1.64 slave mysql&#x7248;&#x672C; 5.7.20</p>
+<p>&#x5B9E;&#x9A8C;&#x524D;&#x9700;&#x8981;&#x786E;&#x4FDD;&#x4E24;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x80FD;&#x591F;&#x6B63;&#x5E38;&#x8BBF;&#x95EE;mysql&#xFF0C;mysql&#x670D;&#x52A1;&#x6B63;&#x5E38;&#x5F00;&#x542F;</p>
+<h3 id="1&#x914D;&#x7F6E;&#x4E3B;&#x6570;&#x636E;&#x5E93;&#x670D;&#x52A1;&#x5668;"><a name="1&#x914D;&#x7F6E;&#x4E3B;&#x6570;&#x636E;&#x5E93;&#x670D;&#x52A1;&#x5668;" class="anchor-navigation-ex-anchor" href="#1&#x914D;&#x7F6E;&#x4E3B;&#x6570;&#x636E;&#x5E93;&#x670D;&#x52A1;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a>1.&#x914D;&#x7F6E;&#x4E3B;&#x6570;&#x636E;&#x5E93;&#x670D;&#x52A1;&#x5668;</h3>
+<p>1.1 &#x5B89;&#x88C5;&#x597D;&#x6570;&#x636E;&#x5E93;</p>
+<p>1.2&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</p>
+<p>vim /etc/my.cnf</p>
+<p>&#x65B0;&#x589E;&#x52A0;&#x914D;&#x7F6E;&#xFF1A;</p>
+<p>server-id=1 #&#x672C;&#x673A;&#x6570;&#x636E;&#x5E93;ID&#x6807;&#x793A;</p>
+<p>log-bin=master-bin #&#x542F;&#x7528;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;</p>
+<p>innodb-file-per-table=ON #&#x4F7F;&#x7528;&#x72EC;&#x7ACB;&#x7684;&#x8868;&#x7A7A;&#x95F4;,&#x5C5E;&#x4E8E;&#x4F18;&#x5316;&#x53C2;&#x6570;,&#x53EF;&#x4EE5;&#x4E0D;&#x52A0;</p>
+<p>skip-name-resolve=ON #&#x8DF3;&#x8FC7;DNS&#x89E3;&#x6790;,&#x52A0;&#x5FEB;&#x8FDE;&#x63A5;&#x901F;&#x5EA6;,&#x5C5E;&#x4E8E;&#x4F18;&#x5316;&#x53C2;&#x6570;,&#x53EF;&#x4EE5;&#x4E0D;&#x52A0;</p>
+<p>1.3&#x6388;&#x6743;&#x8D26;&#x53F7;&#xFF0C;&#x8BA9;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x670D;&#x52A1;&#x5668;&#x6709;&#x6743;&#x9650;&#x8FDE;&#x63A5;&#x8FC7;&#x6765;&#xFF0C;&#x8FDB;&#x884C;&#x540C;&#x6B65;&#x6570;&#x636E;</p>
+<p>mysql&gt; grant replication slave on *.* to &apos;slave&apos;\@&apos;192.168.1.%&apos; identified by
+&apos;123456&apos;;</p>
+<p>mysql&gt; flush privileges;</p>
+<p><strong>&#x91CD;&#x542F;mysql&#x670D;&#x52A1;</strong></p>
+<p>1.4&#x67E5;&#x770B;&#x72B6;&#x6001;&#x4FE1;&#x606F;</p>
+<p>mysql&gt; show master status;</p>
+<p>+-------------------+----------+--------------+------------------+-------------------+</p>
+<p>| File | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |</p>
+<p>+-------------------+----------+--------------+------------------+-------------------+</p>
+<p>| master-bin.000001 | 154 | | | |</p>
+<p>+-------------------+----------+--------------+------------------+-------------------+</p>
+<p>1 row in set (0.00 sec)</p>
+<p>1.5&#x67E5;&#x770B;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;</p>
+<p>[root\@lewis63 ~]# ls /var/lib/mysql</p>
+<p>auto.cnf client-cert.pem ib_logfile0 master-bin.index performance_schema
+server-key.pem</p>
+<p>bbs client-key.pem ib_logfile1 mysql private_key.pem sys</p>
+<p>ca-key.pem ib_buffer_pool ibtmp1 mysql.sock public_key.pem</p>
+<p>ca.pem ibdata1 master-bin.000001 mysql.sock.lock server-cert.pem</p>
+<p>mysql&gt; show binlog events\G</p>
+<h3 id="2&#xFF0E;&#x914D;&#x7F6E;&#x4ECE;&#x6570;&#x636E;&#x5E93;"><a name="2&#xFF0E;&#x914D;&#x7F6E;&#x4ECE;&#x6570;&#x636E;&#x5E93;" class="anchor-navigation-ex-anchor" href="#2&#xFF0E;&#x914D;&#x7F6E;&#x4ECE;&#x6570;&#x636E;&#x5E93;"><i class="fa fa-link" aria-hidden="true"></i></a>2&#xFF0E;&#x914D;&#x7F6E;&#x4ECE;&#x6570;&#x636E;&#x5E93;</h3>
+<p><strong>&#x4E24;&#x53F0;&#x6570;&#x636E;&#x5E93;&#x670D;&#x52A1;&#x5668;mysql&#x7248;&#x672C;&#x8981;&#x4E00;&#x81F4;</strong></p>
+<p><strong>&#x5E76;&#x4E14;&#x6570;&#x636E;&#x5E93;&#x7684;&#x6570;&#x636E;&#x8981;&#x4FDD;&#x5B58;&#x4E00;&#x81F4;,&#x53EF;&#x4EE5;&#x5BFC;&#x51FA;&#x6570;&#x636E;&#x5E93;&#x5C06;&#x5BFC;&#x51FA;&#x7684;&#x6570;&#x636E;&#x5E93;&#x4F20;&#x7ED9;&#x4ECE;&#x670D;&#x52A1;&#x5668;</strong></p>
+<p><strong>&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x8FD9;&#x91CC;&#x7684;&#x6570;&#x636E;&#x5E93;&#x90FD;&#x662F;&#x521D;&#x59CB;&#x5316;&#x72B6;&#x6001;,&#x4E3B;&#x4ECE;&#x5DF2;&#x7ECF;&#x662F;&#x4E00;&#x81F4;&#x4E86;</strong></p>
+<p>mysql&gt; show variables like &apos;%version%&apos;;</p>
+<p>+-------------------------+------------------------------+</p>
+<p>| Variable_name | Value |</p>
+<p>+-------------------------+------------------------------+</p>
+<p>| innodb_version | 5.7.20 |</p>
+<p>| protocol_version | 10 |</p>
+<p>| slave_type_conversions | |</p>
+<p>| tls_version | TLSv1,TLSv1.1 |</p>
+<p>| version | 5.7.20 |</p>
+<p>| version_comment | MySQL Community Server (GPL) |</p>
+<p>| version_compile_machine | x86_64 |</p>
+<p>| version_compile_os | Linux |</p>
+<p>+-------------------------+------------------------------+</p>
+<p>&#x6D4B;&#x8BD5;&#x8FDE;&#x63A5;&#x5230;&#x4E3B;&#x670D;&#x52A1;&#x5668;&#x662F;&#x5426;&#x6210;&#x529F;</p>
+<p>[root\@lewis64 ~]# mysql -uslave -p123456 -h192.168.1.63</p>
+<p><strong>&#x4FEE;&#x6539;&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</strong></p>
+<p>vim /etc/my.cnf</p>
+<p>&#x589E;&#x52A0;&#xFF1A;</p>
+<p>server-id=2</p>
+<p>relay-log-index=relay-log.index</p>
+<p>innodb-file-per-table=ON</p>
+<p>skip-name-resolve=ON</p>
+<p>&#x8BF4;&#x660E;&#xFF1A;</p>
+<p>server-id=2 &#x4ECE;&#x670D;&#x52A1;&#x5668;ID&#x53F7;&#xFF0C;&#x4E0D;&#x8981;&#x548C;&#x4E3B;ID&#x76F8;&#x540C;
+&#xFF0C;&#x5982;&#x679C;&#x8BBE;&#x7F6E;&#x591A;&#x4E2A;&#x4ECE;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x6BCF;&#x4E2A;&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x5FC5;&#x987B;&#x6709;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x7684;server-id&#x503C;&#xFF0C;&#x5FC5;&#x987B;&#x4E0E;&#x4E3B;&#x670D;&#x52A1;&#x5668;&#x7684;&#x4EE5;&#x53CA;&#x5176;&#x5B83;&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x7684;&#x4E0D;&#x76F8;&#x540C;&#x3002;&#x53EF;&#x4EE5;&#x8BA4;&#x4E3A;server-id&#x503C;&#x7C7B;&#x4F3C;&#x4E8E;IP&#x5730;&#x5740;&#xFF1A;&#x8FD9;&#x4E9B;ID&#x503C;&#x80FD;&#x552F;&#x4E00;&#x8BC6;&#x522B;&#x590D;&#x5236;&#x670D;&#x52A1;&#x5668;&#x7FA4;&#x96C6;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x670D;&#x52A1;&#x5668;&#x5B9E;&#x4F8B;&#x3002;</p>
+<p>&#x91CD;&#x542F;mysql&#x670D;&#x52A1;&#x5668;&#xFF1A;[root\@lewis64 ~]# systemctl restart mysqld.service</p>
+<p><strong>&#x914D;&#x7F6E;&#x4E3B;&#x4ECE;</strong></p>
+<p>mysql&gt; change master to
+master_host=&apos;192.168.1.63&apos;,master_user=&apos;slave&apos;,master_password=&apos;123456&apos;,master_log_file=&apos;master-bin.000001&apos;,master_log_pos=154;</p>
+<p>mysql&gt; start slave; #&#x542F;&#x52A8;slave</p>
+<p>mysql&gt; show slave status\G &#x67E5;&#x770B;&#x72B6;&#x6001;</p>
+<p><img src="media/7362ab16d8430c496545ba95fc0a8897.png" alt=""></p>
+<p><strong>Slave_IO_Running &#xFF1A;&#x4E00;&#x4E2A;&#x8D1F;&#x8D23;&#x4E0E;&#x4E3B;&#x673A;&#x7684;io&#x901A;&#x4FE1;</strong></p>
+<p><strong>Slave_SQL_Running&#xFF1A;&#x8D1F;&#x8D23;&#x81EA;&#x5DF1;&#x7684;slave mysql&#x8FDB;&#x7A0B;</strong></p>
+<p><strong>&#x6CE8;&#x610F;&#xFF1A;&#x5982;&#x679C;&#x51FA;&#x73B0;NO&#x5219;&#x68C0;&#x67E5;&#x9632;&#x706B;&#x5899;&#x548C;selinux&#x662F;&#x5426;&#x5173;&#x95ED;&#xFF0C;&#x4E3B;&#x4ECE;mysql&#x7684;UUID&#x662F;&#x5426;&#x91CD;&#x590D;&#x3002;&#x82E5;UUID&#x91CD;&#x590D;&#xFF0C;&#x4FEE;&#x6539;/var/lib/mysql/auto.cnf</strong></p>
+<p><strong>&#x518D;&#x5230;&#x4E3B;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x67E5;&#x770B;&#x72B6;&#x6001;</strong></p>
+<p><img src="media/7c895e2ea0c8c0da5c879a51b94ac4d4.png" alt=""></p>
+<p><strong>&#x5728;&#x4E3B;&#x6570;&#x636E;&#x5E93;&#x670D;&#x52A1;&#x5668;&#x63D2;&#x5165;&#x6570;&#x636E;&#x6D4B;&#x8BD5;&#x540C;&#x6B65;&#xFF1A;</strong></p>
+<p>mysql&gt; create database bbs;</p>
+<p>mysql&gt; use bbs;</p>
+<p>mysql&gt; create table T1(id int,name varchar(10));</p>
+<p>mysql&gt; insert into T1 values(1,&apos;man&apos;);</p>
+<p>&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x4E0A;&#x67E5;&#x770B;&#xFF1A;</p>
+<p><img src="media/126fe3e63fac43308421ac5e5f4398fc.png" alt=""></p>
+<h3 id="3&#x6392;&#x9519;&#xFF1A;"><a name="3&#x6392;&#x9519;&#xFF1A;" class="anchor-navigation-ex-anchor" href="#3&#x6392;&#x9519;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a>3.&#x6392;&#x9519;&#xFF1A;</h3>
+<p>&#x5982;&#x679C;&#x9047;&#x5230;&#x4E3B;&#x4ECE;&#x4E0D;&#x540C;&#x6B65;&#xFF0C;&#x770B;&#x4E00;&#x4E0B;&#x4E3B;&#x4ECE;bin-log&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x540C;&#x6B65;</p>
+<p><img src="media/ea9e3490737f6f3e6d2fee8476c34389.png" alt=""></p>
+<p>&#x5728;&#x4E3B;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x770B;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#x4E8B;&#x4EF6;&#x5217;&#x8868;</p>
+<p>mysql&gt; show binlog events \G</p>
+<p>&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x6267;&#x884C;MySQL&#x547D;&#x4EE4;&#x4E0B;&#xFF1A;</p>
+<p>mysql&gt; stop slave&#xFF1B; #&#x5148;&#x505C;&#x6B62;slave&#x670D;&#x52A1;</p>
+<p>mysql&gt; change master to
+master_log_file=&apos;mysql-bin-master.000001&apos;,master_log_pos=1164;</p>
+<p><strong>#&#x6839;&#x636E;&#x4E0A;&#x9762;&#x4E3B;&#x670D;&#x52A1;&#x5668;&#x7684;show master
+status&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x8FDB;&#x884C;&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x6570;&#x636E;&#x5E93;&#x8BB0;&#x5F55;&#x56DE;&#x5F52;&#xFF0C;&#x8FBE;&#x5230;&#x540C;&#x6B65;&#x7684;&#x6548;&#x679C;</strong></p>
+<p>mysql&gt;slave start; <strong>#&#x542F;&#x52A8;&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x540C;&#x6B65;&#x670D;&#x52A1;</strong></p>
+<p>mysql&gt; show slave status\G; <strong>#&#x7528;show slave
+status\G;&#x770B;&#x4E00;&#x4E0B;&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x7684;&#x540C;&#x6B65;&#x60C5;&#x51B5;</strong></p>
+<p><strong>Slave_IO_Running: Yes</strong></p>
+<p><strong>Slave_SQL_Running: Yes</strong></p>
+<p><strong>&#x5982;&#x679C;&#x90FD;&#x662F;yes&#xFF0C;&#x90A3;&#x4EE3;&#x8868;&#x5DF2;&#x7ECF;&#x5728;&#x540C;&#x6B65;</strong></p>
+<p>&#x91CD;&#x542F;&#x4ECE;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x518D;&#x67E5;&#x770B;&#x72B6;&#x6001;&#xFF1A;</p>
+<p>&#x505C;&#x6B62;&#x4ECE;&#x670D;&#x52A1;&#x5668;slave stop;</p>
+<p>&#x5F00;&#x542F;&#x4ECE;&#x670D;&#x52A1;&#x5668;slave start;</p>
+<p>&#x6392;&#x9519;&#x601D;&#x8DEF;&#xFF1A;</p>
+<p>1&#x3001;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#x6CA1;&#x6709;&#x5F00;&#x542F;</p>
+<p>2&#x3001;IPTABLES &#x6CA1;&#x6709;&#x653E;&#x5F00;&#x7AEF;&#x53E3;</p>
+<p>3&#x3001;&#x5BF9;&#x5E94;&#x7684;&#x4E3B;&#x673A; IP&#x5730;&#x5740;&#x5199;&#x9519;&#x4E86;</p>
+<p><strong>SQL&#x7EBF;&#x7A0B;&#x51FA;&#x9519;</strong></p>
+<p><strong>1&#x3001;&#x4E3B;&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x6570;&#x636E;&#x5E93;&#x7ED3;&#x6784;&#x4E0D;&#x7EDF;&#x4E00;</strong></p>
+<p><strong>&#x51FA;&#x9519;&#x540E;&#xFF0C;&#x6570;&#x636E;&#x5C11;&#xFF0C;&#x53EF;&#x4EE5;&#x624B;&#x52A8;&#x89E3;&#x51B3;&#x521B;&#x5EFA;&#x63D2;&#x5165;&#xFF0C;&#x518D;&#x66F4;&#x65B0;slave&#x72B6;&#x6001;&#x3002;</strong></p>
+<p><strong>&#x6CE8;&#xFF1A;&#x5982;&#x679C;&#x4E3B;&#x4E0A;&#x8BEF;&#x5220;&#x9664;&#x4E86;&#x3002;&#x90A3;&#x4E48;&#x4ECE;&#x4E0A;&#x4E5F;&#x5C31;&#x8BEF;&#x5220;&#x9664;&#x4E86;&#x3002;#&#x56E0;&#x6B64;&#x4E3B;&#x4E0A;&#x8981;&#x5B9A;&#x671F;&#x505A;mysqldump&#x5907;&#x4EFD;</strong></p>
+<h2 id="mysql&#x8BFB;&#x5199;&#x5206;&#x79BB;"><a name="mysql&#x8BFB;&#x5199;&#x5206;&#x79BB;" class="anchor-navigation-ex-anchor" href="#mysql&#x8BFB;&#x5199;&#x5206;&#x79BB;"><i class="fa fa-link" aria-hidden="true"></i></a>mysql&#x8BFB;&#x5199;&#x5206;&#x79BB;</h2>
+<p>Mysql&#x4F5C;&#x4E3A;&#x76EE;&#x524D;&#x4E16;&#x754C;&#x4E0A;&#x4F7F;&#x7528;&#x6700;&#x5E7F;&#x6CDB;&#x7684;&#x514D;&#x8D39;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x76F8;&#x4FE1;&#x6240;&#x6709;&#x4ECE;&#x4E8B;&#x7CFB;&#x7EDF;&#x8FD0;&#x7EF4;&#x7684;&#x5DE5;&#x7A0B;&#x5E08;&#x90FD;&#x4E00;&#x5B9A;&#x63A5;&#x89E6;&#x8FC7;&#x3002;&#x4F46;&#x5728;&#x5B9E;&#x9645;&#x7684;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E2D;&#xFF0C;&#x7531;&#x5355;&#x53F0;Mysql&#x4F5C;&#x4E3A;&#x72EC;&#x7ACB;&#x7684;&#x6570;&#x636E;&#x5E93;&#x662F;&#x5B8C;&#x5168;&#x4E0D;&#x80FD;&#x6EE1;&#x8DB3;&#x5B9E;&#x9645;&#x9700;&#x6C42;&#x7684;&#xFF0C;&#x65E0;&#x8BBA;&#x662F;&#x5728;&#x5B89;&#x5168;&#x6027;&#xFF0C;&#x9AD8;&#x53EF;&#x7528;&#x6027;&#x4EE5;&#x53CA;&#x9AD8;&#x5E76;&#x53D1;&#x7B49;&#x5404;&#x4E2A;&#x65B9;&#x9762;&#x3002;</p>
+<p>&#x56E0;&#x6B64;&#xFF0C;&#x4E00;&#x822C;&#x6765;&#x8BF4;&#x90FD;&#x662F;&#x901A;&#x8FC7;
+&#x4E3B;&#x4ECE;&#x590D;&#x5236;&#xFF08;Master-Slave&#xFF09;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x540C;&#x6B65;&#x6570;&#x636E;&#xFF0C;&#x518D;&#x901A;&#x8FC7;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#xFF08;MySQL-Proxy/Amoeba&#xFF09;&#x6765;&#x63D0;&#x5347;&#x6570;&#x636E;&#x5E93;&#x7684;&#x5E76;&#x53D1;&#x8D1F;&#x8F7D;&#x80FD;&#x529B;
+&#x8FD9;&#x6837;&#x7684;&#x65B9;&#x6848;&#x6765;&#x8FDB;&#x884C;&#x90E8;&#x7F72;&#x4E0E;&#x5B9E;&#x65BD;&#x7684;&#x3002;</p>
+<p><strong>&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x5DE5;&#x4F5C;&#x539F;&#x7406;</strong>&#xFF1A;</p>
+<p>&#x57FA;&#x672C;&#x7684;&#x539F;&#x7406;&#x662F;&#x8BA9;&#x4E3B;&#x6570;&#x636E;&#x5E93;&#x5904;&#x7406;&#x4E8B;&#x52A1;&#x6027;&#x589E;&#x3001;&#x6539;&#x3001;&#x5220;&#x64CD;&#x4F5C;&#xFF08;INSERT&#x3001;UPDATE&#x3001;DELETE&#xFF09;&#xFF0C;&#x800C;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x5904;&#x7406;SELECT&#x67E5;&#x8BE2;&#x64CD;&#x4F5C;&#x3002;&#x6570;&#x636E;&#x5E93;&#x590D;&#x5236;&#x88AB;&#x7528;&#x6765;&#x628A;&#x4E8B;&#x52A1;&#x6027;&#x64CD;&#x4F5C;&#x5BFC;&#x81F4;&#x7684;&#x53D8;&#x66F4;&#x540C;&#x6B65;&#x5230;&#x96C6;&#x7FA4;&#x4E2D;&#x7684;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x3002;</p>
+<p><img src="media/324ad90033f048bc33158cae07548284.png" alt=""></p>
+<p><strong>&#x6570;&#x636E;&#x5185;&#x90E8;&#x4EA4;&#x6362;&#x8FC7;&#x7A0B;&#xFF1A;</strong></p>
+<p><img src="media/45096e0ab8ce523ab1743ebf55523fbc.jpg" alt="&#x8BF4;&#x660E;: http://heylinux.com/wp-content/uploads/2011/06/mysql-master-salve-proxy.jpg"></p>
+<p><strong>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#xFF1A;</strong></p>
+<p><strong>&#x9762;&#x5BF9;&#x8D8A;&#x6765;&#x8D8A;&#x5927;&#x7684;&#x8BBF;&#x95EE;&#x538B;&#x529B;&#xFF0C;&#x5355;&#x53F0;&#x7684;&#x670D;&#x52A1;&#x5668;&#x7684;&#x6027;&#x80FD;&#x6210;&#x4E3A;&#x74F6;&#x9888;&#xFF0C;&#x9700;&#x8981;&#x5206;&#x62C5;&#x8D1F;&#x8F7D;</strong></p>
+<p>1&#x3001; &#x4E3B;&#x4ECE;&#x53EA;&#x8D1F;&#x8D23;&#x5404;&#x81EA;&#x7684;&#x5199;&#x548C;&#x8BFB;&#xFF0C;&#x6781;&#x5927;&#x7A0B;&#x5EA6;&#x7684;&#x7F13;&#x89E3;X&#x9501;&#x548C;S&#x9501;&#x4E89;&#x7528;</p>
+<p>2&#x3001; &#x4ECE;&#x5E93;&#x53EF;&#x914D;&#x7F6E;myisam&#x5F15;&#x64CE;&#xFF0C;&#x63D0;&#x5347;&#x67E5;&#x8BE2;&#x6027;&#x80FD;&#x4EE5;&#x53CA;&#x8282;&#x7EA6;&#x7CFB;&#x7EDF;&#x5F00;&#x9500;</p>
+<p>3&#x3001; &#x589E;&#x52A0;&#x5197;&#x4F59;&#xFF0C;&#x63D0;&#x9AD8;&#x53EF;&#x7528;&#x6027;</p>
+<p>&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x7684;&#x65B9;&#x5F0F;&#xFF1A;</p>
+<p><strong>&#x4E00;&#x822C;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x5B9E;&#x73B0;</strong></p>
+<p>(1)&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5C42;&#x5B9E;&#x73B0;&#xFF0C;&#x7F51;&#x7AD9;&#x7684;&#x7A0B;&#x5E8F;&#x5B9E;&#x73B0;</p>
+<p>&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5C42;&#x5B9E;&#x73B0;&#x6307;&#x7684;&#x662F;&#x5728;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5185;&#x90E8;&#x53CA;&#x8FDE;&#x63A5;&#x5668;&#x4E2D;&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;</p>
+<p>&#x4F18;&#x70B9;&#xFF1A;</p>
+<p>A&#xFF1A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5185;&#x90E8;&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#xFF0C;&#x5B89;&#x88C5;&#x65E2;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;</p>
+<p>B&#xFF1A;&#x51CF;&#x5C11;&#x4E00;&#x5B9A;&#x90E8;&#x7F72;&#x96BE;&#x5EA6;</p>
+<p>C&#xFF1A;&#x8BBF;&#x95EE;&#x538B;&#x529B;&#x5728;&#x4E00;&#x5B9A;&#x7EA7;&#x522B;&#x4EE5;&#x4E0B;&#xFF0C;&#x6027;&#x80FD;&#x5F88;&#x597D;</p>
+<p>&#x7F3A;&#x70B9;&#xFF1A;</p>
+<p>A&#xFF1A;&#x67B6;&#x6784;&#x4E00;&#x65E6;&#x8C03;&#x6574;&#xFF0C;&#x4EE3;&#x7801;&#x8981;&#x8DDF;&#x7740;&#x53D8;</p>
+<p>B&#xFF1A;&#x96BE;&#x4EE5;&#x5B9E;&#x73B0;&#x9AD8;&#x7EA7;&#x5E94;&#x7528;&#xFF0C;&#x5982;&#x81EA;&#x52A8;&#x5206;&#x5E93;&#xFF0C;&#x5206;&#x8868;</p>
+<p>C&#xFF1A;&#x65E0;&#x6CD5;&#x9002;&#x7528;&#x5927;&#x578B;&#x5E94;&#x7528;&#x573A;&#x666F;</p>
+<p>(2)&#x4E2D;&#x95F4;&#x4EF6;&#x5C42;&#x5B9E;&#x73B0;</p>
+<p>&#x4E2D;&#x95F4;&#x4EF6;&#x5C42;&#x5B9E;&#x73B0;&#x662F;&#x6307;&#x5728;&#x5916;&#x90E8;&#x4E2D;&#x95F4;&#x4EF6;&#x7A0B;&#x5E8F;&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;</p>
+<p>&#x5E38;&#x89C1;&#x7684;&#x4E2D;&#x95F4;&#x4EF6;&#x7A0B;&#x5E8F;&#xFF1A;</p>
+<p><img src="media/0b25dbafaa93b223767c6d49c13cc43d.png" alt=""></p>
+<p>&#x4F7F;&#x7528;oneproxy&#x4E2D;&#x95F4;&#x4EF6;&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;</p>
+<ol>
+<li>&#x670D;&#x52A1;&#x5668;&#x914D;&#x7F6E;&#x8BF4;&#x660E;:</li>
+</ol>
+<p>IP &#x89D2;&#x8272; &#x5B89;&#x88C5;&#x8BF4;&#x660E;</p>
+<p>192.168.1.65 &#x8BFB;&#x5199;&#x5206;&#x79BB;&#x670D;&#x52A1;&#x5668; &#x5B89;&#x88C5;oneproxy</p>
+<p>192.168.1.63 MySQL-master MySQL mysql</p>
+<p>192.168.1.64 MySQL-slave MySQL mysql</p>
+<p><strong>2.&#x5148;&#x5B89;&#x88C5;&#x597D;1.63&#x548C;1.64&#x7684;MySQL&#x670D;&#x52A1;,&#x5E76;&#x4E14;&#x505A;&#x597D;&#x4E3B;&#x4ECE;&#x590D;&#x5236;</strong></p>
+<p>3.oneproxy&#x670D;&#x52A1;&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E;</p>
+<p>[root\@lewis65 ~]# wget
+<a href="http://www.onexsoft.com/software/oneproxy-rhel6-linux64-v6.0.0-ga.tar.gz" target="_blank">http://www.onexsoft.com/software/oneproxy-rhel6-linux64-v6.0.0-ga.tar.gz</a></p>
+<p>&#x89E3;&#x538B;&#xFF1A;[root\@lewis65 ~]# tar xf oneproxy-rhel6-linux64-v6.0.0-ga.tar.gz -C
+/usr/local/</p>
+<p>&#x4FEE;&#x6539;&#x542F;&#x52A8;&#x6587;&#x4EF6;&#x4E2D;&#x9ED8;&#x8BA4;&#x8BFB;&#x5199;&#x8DEF;&#x5F84;</p>
+<p>[root\@lewis65 ~]# cd /usr/local/oneproxy/</p>
+<p>[root\@lewis65 oneproxy]# ls</p>
+<p>bin demo.sh oneproxy.service sql testautocommit.sql trantest.sql</p>
+<p>conf log README testadmin.sql testproxy.sql</p>
+<p>[root\@lewis65 oneproxy]# vim oneproxy.service</p>
+<p>ONEPROXY_HOME=/usr/local/oneproxy
+#&#x4FEE;&#x6539;&#x9ED8;&#x8BA4;&#x7684;&#x5BB6;&#x76EE;&#x5F55;&#x7684;&#x8DEF;&#x5F84;,&#x4FEE;&#x6539;&#x6210;oneproxy&#x7684;&#x5B89;&#x88C5;&#x76EE;&#x5F55;</p>
+<p>&#x590D;&#x5236;&#x542F;&#x52A8;&#x6587;&#x4EF6;&#x5230;&#x7CFB;&#x7EDF;&#x542F;&#x52A8;&#x8DEF;&#x5F84;&#x4E0B;:</p>
+<p>[root\@lewis65 oneproxy]# cp oneproxy.service /etc/init.d</p>
+<p>&#x4E0B;&#x9762;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x547D;&#x4EE4;&#x6765;&#x542F;&#x52A8;&#x670D;&#x52A1;&#x4E86;:</p>
+<p>[root\@lewis65 oneproxy]# /etc/init.d/oneproxy.service start &#x542F;&#x52A8;</p>
+<p>[root\@lewis65 oneproxy]# /etc/init.d/oneproxy.service stop &#x5173;&#x95ED;</p>
+<p>[root\@lewis65 oneproxy]# /etc/init.d/oneproxy.service restart &#x91CD;&#x542F;</p>
+<p><strong>&#x4FEE;&#x6539;&#x4E3B;&#x914D;&#x7F6E;&#x6587;&#x4EF6;,&#x586B;&#x5199;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x7684;&#x76F8;&#x5173;&#x4FE1;&#x606F;:</strong></p>
+<p>[root\@lewis65 oneproxy]# cd conf/</p>
+<p>[root\@lewis65 conf]# vim proxy.conf</p>
+<p>[oneproxy]</p>
+<p>keepalive = 1 #&#x4FDD;&#x6301;&#x8FDE;&#x63A5;</p>
+<p>event-threads = 4 #&#x5E76;&#x53D1;&#x8FDE;&#x63A5;&#x6570;&#xFF0C;&#x6700;&#x5927;&#x5141;&#x8BB8;48&#x4E2A;&#x7EBF;&#x7A0B;&#x3002;&#x901A;&#x5E38;&#x53EF;&#x4EE5;&#x8BBE;&#x4E3A;CPU Core&#x6570;&#x91CF;&#x7684;&#x4E24;&#x500D;</p>
+<p>log-file = log/oneproxy.log #&#x65E5;&#x5FD7;&#x6587;&#x4EF6;</p>
+<p>pid-file = log/oneproxy.pid #&#x8FDB;&#x7A0B;&#x6587;&#x4EF6;</p>
+<p>lck-file = log/oneproxy.lck #&#x9501;&#x6587;&#x4EF6;</p>
+<p>max-idle-time = 30 #&#x6700;&#x5927;&#x7A7A;&#x95F2;&#x65F6;&#x95F4;</p>
+<p>admin-address =:4044 #&#x7BA1;&#x7406;&#x670D;&#x52A1;&#x7AEF;&#x53E3;</p>
+<p>proxy-address =:3307 #&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x7AEF;&#x53E3;</p>
+<p>proxy-socket-file =/tmp/oneproxy.sock #sock&#x6587;&#x4EF6;</p>
+<p>mysql-version =5.7.20 #MySQL&#x7248;&#x672C;</p>
+<p>proxy-license = A2FF461456A67F28,D2F6A5AD70C9042D</p>
+<p>proxy-httpserver = 0.0.0.0:8080 #&#x7BA1;&#x7406;&#x9875;&#x9762;&#x5730;&#x5740;</p>
+<p>proxy-httptitle = OneProxy Monitor</p>
+<p>proxy-httpauth =admin:oneproxy #&#x9875;&#x9762;&#x767B;&#x5F55;&#x8D26;&#x53F7; &#x5BC6;&#x7801;</p>
+<p>proxy-auto-readonly = 0</p>
+<p>proxy-slave-addresses.1 = 192.168.1.64:3306\@server1
+#&#x4ECE;MySQL,server1&#x4E3A;&#x670D;&#x52A1;&#x7EC4;&#x540D;&#x79F0;&#xFF0C;&#x4EFB;&#x610F;&#x5199;</p>
+<p>proxy-master-addresses.1 = 192.168.1.63:3306\@server1
+#&#x4E3B;MySQL,server1&#x4E3A;&#x670D;&#x52A1;&#x7EC4;&#x540D;&#x79F0;&#xFF0C;&#x4EFB;&#x610F;&#x5199;</p>
+<p>proxy-group-policy = server1:read_balance #&#x4EE3;&#x7406;&#x7B56;&#x7565;,read_balance
+&#x4E3A;:&#x4E3B;MySQL&#x8D1F;&#x8D23;&#x5199;, &#x4E3B;&#x4ECE;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x8BFB;</p>
+<p>proxy-user-list = root/9D7E55EAF8912CCBF32069443FAC452794F8941B\@bbs</p>
+<p>#&#x8FDE;&#x63A5;&#x540E;&#x7AEF;&#x6570;&#x636E;&#x5E93;&#x7684;&#x8D26;&#x6237;/&#x5BC6;&#x7801;\@&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x8FD9;&#x91CC;&#x7684;&#x5BC6;&#x7801;&#x662F;&#x52A0;&#x5BC6;&#x4E4B;&#x540E;&#x7684;&#x5BC6;&#x7801;</p>
+<p>remote-address.1 = 192.168.1.119:4041</p>
+<p>proxy-part-template = conf/template.txt</p>
+<p>proxy-part-tables = conf/part.txt</p>
+<p>proxy-sequence-group = default</p>
+<p>proxy-sequence.1 = seq1</p>
+<p>&#x8981;&#x786E;&#x4FDD;&#x8FD9;&#x4E2A;&#x8D26;&#x53F7;&#x6709;&#x6743;&#x9650;&#x80FD;&#x8FDE;&#x63A5;&#x5230;&#x540E;&#x7AEF;&#x6570;&#x636E;&#x5E93;</p>
+<p><strong>&#x5206;&#x522B;&#x5728;&#x4E3B;&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x6267;&#x884C;&#x6388;&#x6743;&#x547D;&#x4EE4;:</strong></p>
+<p>mysql&gt;grant all privileges on *.* to &apos;root\@&apos;192.168.1.%&apos; identified by &apos;
+123456&apos; with grant option;</p>
+<p>mysql&gt; flush privileges;</p>
+<p><strong>#&#x8981;&#x786E;&#x4FDD;&#x540E;&#x7AEF;&#x6570;&#x636E;&#x5E93;&#x6709;bbs(&#x540D;&#x5B57;&#x6839;&#x636E;&#x5B9E;&#x9645;&#x60C5;&#x51B5;&#x6765;&#x5B9A;)&#x8FD9;&#x4E2A;&#x5E93;,oneproxy&#x5C31;&#x662F;&#x9760;&#x8FD9;&#x4E2A;&#x5E93;&#x7684;&#x5B58;&#x5728;&#x6765;&#x5224;&#x65AD;&#x540E;&#x7AEF;&#x6570;&#x636E;&#x5E93;&#x7684;&#x5B58;&#x6D3B;&#x72B6;&#x6001;</strong></p>
+<p>&#x8FDB;&#x5165;oneproxy&#x4E2D;&#x7684;bin&#x76EE;&#x5F55;&#xFF0C;&#x4F7F;&#x7528;mysqlpwd&#x5BF9;&#x5BC6;&#x7801;&#x8FDB;&#x884C;&#x52A0;&#x5BC6;</p>
+<p>[root\@lewis65 bin]# ./mysqlpwd 123456</p>
+<p>9D7E55EAF8912CCBF32069443FAC452794F8941B</p>
+<p><strong>&#x628A;&#x5F97;&#x5230;&#x7684;&#x8FD9;&#x4E00;&#x4E32;&#x5B57;&#x7B26;&#x4E32;&#x5199;&#x5230;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x91CC;</strong></p>
+<p>&#x4FDD;&#x5B58;&#x6587;&#x4EF6;,&#x542F;&#x52A8;&#x670D;&#x52A1;,&#x6D4B;&#x8BD5;&#x8BFB;&#x5199;&#x5206;&#x79BB;</p>
+<p>[root\@lewis65 conf]# /etc/init.d/oneproxy.service start</p>
+<p>[root\@lewis65 ~]# netstat -antpu | grep oneproxy</p>
+<p>tcp 0 0 0.0.0.0:3307 0.0.0.0:* LISTEN 1148/oneproxy</p>
+<p>tcp 0 0 0.0.0.0:8080 0.0.0.0:* LISTEN 1148/oneproxy</p>
+<p>tcp 0 0 0.0.0.0:4041 0.0.0.0:* LISTEN 1148/oneproxy</p>
+<p><strong>&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7F51;&#x9875;&#x6D4F;&#x89C8;&#x6570;&#x636E;&#x5E93;&#x7684;&#x72B6;&#x6001;:</strong></p>
+<p><img src="media/de59a3e858fded84a03d1e735cc09981.png" alt=""></p>
+<p>&#x901A;&#x8FC7;&#x8FDE;&#x63A5;oneProxy&#x4EE3;&#x7406;,&#x6D4B;&#x8BD5;&#x8BFB;&#x5199;&#x5206;&#x79BB;(&#x53EF;&#x4EE5;&#x7528;&#x6570;&#x636E;&#x5E93;&#x7EC8;&#x7AEF;&#x5DE5;&#x5177;)</p>
+<p>&#x6D4B;&#x8BD5;&#x8BFB;&#xFF1A;</p>
+<p><img src="media/d304eaccbfcd268329d5423165e8d1c4.png" alt=""></p>
+<p>&#x6D4B;&#x8BD5;&#x5199;&#xFF1A;</p>
+<p>&#x6267;&#x884C;DDL&#x8BED;&#x53E5;&#x63D0;&#x793A;&#xFF08;&#xFF09;&#xFF1A;</p>
+<p>ERROR 1044 (42000): Access denied due to security policy, DDL disabled or DML
+restricted!</p>
+<p><strong>&#x89E3;&#x91CA;&#xFF1A;&#x7531;&#x4E8E;OneProxy&#x4E3A;&#x4E86;&#x5B89;&#x5168;&#x8D77;&#x89C1;&#xFF0C;&#x9ED8;&#x8BA4;&#x662F;&#x7981;&#x6B62;DDL&#x8BED;&#x53E5;&#x7684;&#x3002;</strong></p>
+<p><strong>&#x89E3;&#x51B3;&#x529E;&#x6CD5;&#xFF1A;</strong></p>
+<ol>
+<li><strong>oneproxy&#x670D;&#x52A1;&#x5668;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</strong></li>
+</ol>
+<p><strong>[root\@lewis65 ~]# vim /usr/local/oneproxy/conf/proxy.conf</strong></p>
+<p><strong>&#x52A0;&#x5165;&#xFF1A;</strong></p>
+<p><strong>--proxy-group-security = \<server1\>:{0}</server1\></strong></p>
+<p><strong>(2)&#x4ECE;OneProxy&#x7BA1;&#x7406;&#x7AEF;&#x53E3;&#xFF0C;&#x8FD0;&#x884C;&#x5982;&#x4E0B;&#x547D;&#x4EE4;&#xFF1A;</strong></p>
+<p>[root\@lewis65 ~]# mysql -uadmin -pOneProxy -P4041 -h192.168.1.65 -e &quot;set
+gaccess server1 0;&quot;</p>
+<p>&#x6D4B;&#x8BD5;&#xFF1A;</p>
+<p>&#x56E0;&#x4E3A;&#x4E3B;&#x4ECE;&#x590D;&#x5236;&#x6548;&#x679C;&#x53EF;&#x80FD;&#x770B;&#x4E0D;&#x51FA;&#x6765;&#xFF0C;&#x53EF;&#x4EE5;&#x5148;&#x5173;&#x95ED;&#x4E3B;&#x4ECE;&#xFF0C;&#x4F46;&#x662F;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x5F80;&#x5F80;&#x4E0D;&#x5141;&#x8BB8;&#x8FD9;&#x6837;&#x505A;</p>
+<p>&#x5728;master&#x6216;slave&#x6216;&#x5176;&#x5B83;&#x4EFB;&#x610F;&#x4E00;&#x53F0;&#x975E;&#x96C6;&#x7FA4;&#x7684;&#x673A;&#x5668;&#x767B;&#x5F55;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;&#x6267;&#x884C;</p>
+<p><img src="media/d9507b3fccdb071f1aaebbb938593e23.png" alt=""></p>
+<p>&#x53EF;&#x4EE5;&#x8FDB;&#x884C;DDL&#x8BED;&#x53E5;&#x64CD;&#x4F5C;&#xFF0C;&#x767B;&#x5F55;&#x4E3B;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x67E5;&#x770B;&#xFF1A;</p>
+<p><img src="media/68e6220262062963d9667d5da669c815.png" alt=""></p>
+<p><strong>&#x5404;&#x79CD;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x7684;&#x4E3B;&#x8981;&#x7B56;&#x7565;&#x7B80;&#x4ECB;</strong></p>
+<p>master_only&#xFF1A;&#x8BFB;&#x5199;&#x90FD;&#x5728;&#x4E3B;&#x670D;&#x52A1;&#x5668;&#x4E0A;</p>
+<p>read_failover:&#x5728;&#x4E3B;&#x670D;&#x52A1;&#x5668;&#x6B63;&#x5E38;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8BFB;&#x5199;&#x90FD;&#x5728;&#x4E3B;&#x5E93;&#x4E0A;&#xFF0C;&#x5982;&#x679C;&#x8BFB;&#x5931;&#x8D25;&#xFF0C;&#x624D;&#x5230;&#x4ECE;&#x5E93;&#x4E0A;&#x8BFB;</p>
+<p>read-slave:&#x4E3B;&#x5E93;&#x6267;&#x884C;&#x5199;&#x64CD;&#x4F5C;&#xFF0C;&#x4ECE;&#x5E93;&#x6267;&#x884C;&#x8BFB;&#x64CD;&#x4F5C;</p>
+<p>read_other:&#x4E3B;&#x670D;&#x52A1;&#x5668;&#x8D1F;&#x8D23;&#x5199;&#xFF0C;&#x5176;&#x4ED6;&#x8282;&#x70B9;&#x8D1F;&#x8D23;&#x8BFB;</p>
+<p>read_shard:&#x4E3B;&#x670D;&#x52A1;&#x5668;&#x8D1F;&#x8D23;&#x5199;&#xFF0C;&#x5176;&#x4ED6;&#x8282;&#x70B9;&#x901A;&#x8FC7;&#x4E00;&#x81F4;&#x6027;hash&#x5230;&#x5176;&#x4ED6;&#x8282;&#x70B9;&#x8BFB;</p>
+<p>read_iphash:&#x4E3B;&#x670D;&#x52A1;&#x5668;&#x8D1F;&#x8D23;&#x5199;&#xFF0C;&#x5176;&#x4ED6;&#x8282;&#x70B9;&#x901A;&#x8FC7;IP&#x7684;hash&#x5230;&#x5176;&#x4ED6;&#x8282;&#x70B9;&#x8BFB;</p>
+<p>read_balance&#xFF1A;&#x4E3B;&#x670D;&#x52A1;&#x5668;&#x8D1F;&#x8D23;&#x5199;&#xFF0C;&#x8BFB;&#x5728;&#x4E3B;&#x4E0E;&#x4ECE;&#x4E4B;&#x95F4;&#x8F6E;&#x8BE2;</p>
+<p>write_failover:&#x5728;&#x4E00;&#x53F0;&#x4E3B;&#x670D;&#x52A1;&#x5668;&#x5199;&#xFF0C;&#x8BFB;&#x5728;&#x6240;&#x6709;&#x4E3B;&#x4E0E;&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x8F6E;&#x8BE2;</p>
+<p>write_banlance:&#x5199;&#x5728;&#x6240;&#x6709;&#x4E3B;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x8F6E;&#x8BE2;&#xFF0C;&#x5199;&#x5728;&#x6240;&#x6709;&#x4E3B;&#x4E0E;&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x8F6E;&#x8BE2;</p>
+<p>write_shard:&#x8BFB;&#x5199;&#x5728;&#x4E3B;&#x548C;&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x901A;&#x8FC7;&#x4E00;&#x81F4;&#x6027;hash&#x8F6E;&#x8BE2;</p>
+<p>write_iphash:&#x8BFB;&#x5199;&#x5728;&#x4E3B;&#x548C;&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x901A;&#x8FC7;ip&#x7684;hash&#x8F6E;&#x8BE2;</p>
+<p>big_slave&#xFF1A;&#x5199;&#x548C;&#x7B80;&#x5355;&#x7684;&#x8BFB;&#x5728;&#x4E3B;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#xFF0C;&#x590D;&#x6742;&#x67E5;&#x8BE2;&#x5728;&#x4ECE;&#x4E0A;</p>
+<p>big_balance:&#x5199;&#x548C;&#x7B80;&#x5355;&#x7684;&#x8BFB;&#x5728;&#x4E3B;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#xFF0C;&#x590D;&#x6742;&#x67E5;&#x8BE2;&#x5728;&#x4E3B;&#x548C;&#x4ECE;&#x4E0A;&#x8F6E;&#x8BE2;</p>
+<p><strong>&#x53C2;&#x6570;&#x8865;&#x5145;:</strong></p>
+<p>&#x901A;&#x8FC7;bin/oneproxy --help-all&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x6240;&#x6709;&#x914D;&#x7F6E;&#x9879;</p>
+<p>&#x5176;&#x9009;&#x9879;&#x57FA;&#x672C;&#x4E0A;&#x5206;&#x4E3A;oneproxy&#x6A21;&#x5757;&#x53C2;&#x6570;(&#x5BF9;&#x5E94;&#x7684;&#x529F;&#x80FD;)&#x548C;&#x5E94;&#x7528;&#x53C2;&#x6570; </p>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9;lewis 2018 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2018-09-19 13:08:35
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="zabbix源码安装及配置.html" class="navigation navigation-prev " aria-label="Previous page: zabbix源码安装及配置">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="MySQL高可用之MHA.html" class="navigation navigation-next " aria-label="Next page: MySQL高可用之MHA">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"MySQL配置主从读写分离","level":"1.2.7","depth":2,"next":{"title":"MySQL高可用之MHA","level":"1.2.8","depth":2,"path":"linux/MySQL高可用之MHA.md","ref":"linux/MySQL高可用之MHA.md","articles":[]},"previous":{"title":"zabbix源码安装及配置","level":"1.2.6","depth":2,"path":"linux/zabbix源码安装及配置.md","ref":"linux/zabbix源码安装及配置.md","articles":[]},"dir":"ltr"},"config":{"plugins":["favicon","toc2","disqus","anchors@^0.7.1","include-codeblock@^3.0.2","splitter@^0.0.8","tbfed-pagefooter@^0.0.1","expandable-chapters-small@^0.1.7","anchor-navigation-ex@0.1.8","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright ©lewis 2018","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"livereload":{},"splitter":{},"search":{},"toc2":{"addClass":true,"className":"toc"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"isRewritePageTitle":false,"tocLevel1Icon":"fa fa-hand-o-right","tocLevel2Icon":"fa fa-hand-o-right","tocLevel3Icon":"fa fa-hand-o-right"},"favicon":{"shortcut":"/images/favicon.ico","bookmark":"/images/favicon.ico"},"expandable-chapters-small":{},"include-codeblock":{"check":false,"edit":true,"fixlang":false,"lang":"","template":"ace","theme":"chrome","unindent":true},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{}},"theme":"default","author":"Lewis","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"黎明的奔跑","language":"zh-hans","output.name":"site","links":{"sidebar":{"Home":"https://www.shareknowledge.top"}},"gitbook":"3.2.3","description":"求知若渴,虚心若愚"},"file":{"path":"linux/MySQL配置主从读写分离.md","mtime":"2018-09-19T05:08:35.037Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-25T12:29:33.884Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-toc2/toc2.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
