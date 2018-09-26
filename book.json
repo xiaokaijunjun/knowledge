@@ -12,14 +12,14 @@
         }
     },
     "plugins": [
+    	"-lunr",
+    	"-search",
+    	"search-plus",
         "favicon",
-        "toc2",
-        "disqus",
         "anchors@^0.7.1",
         "include-codeblock@^3.0.2",
         "splitter@^0.0.8",
         "tbfed-pagefooter@^0.0.1",
-        "expandable-chapters-small@^0.1.7",
         "anchor-navigation-ex@0.1.8"
     ],
 
@@ -27,13 +27,6 @@
         "favicon": {
             "shortcut": "/images/favicon.ico",
             "bookmark": "/images/favicon.ico"
-        },
-        "disqus": {
-        	"shortName": "gitbookuse"
-    	},
-        "toc2": {
-            "addClass": true,
-            "className": "toc"
         },
         "theme-default": {
             "showLevel": true
