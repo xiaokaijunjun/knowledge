@@ -24,6 +24,11 @@
     ],
 
     "pluginsConfig": {
+        "fontSetting": {
+            "theme": "white",
+            "family": "msyh",
+            "size" :2
+        },
         "favicon": {
             "shortcut": "/images/favicon.ico",
             "bookmark": "/images/favicon.ico"
@@ -42,7 +47,7 @@
             "modify_format": "YYYY-MM-DD HH:mm:ss"
         },
         "anchor-navigation-ex": {
-            "isRewritePageTitle": false,
+            "isRewritePageTitle": true,
             "tocLevel1Icon": "fa fa-hand-o-right",
             "tocLevel2Icon": "fa fa-hand-o-right",
             "tocLevel3Icon": "fa fa-hand-o-right"
